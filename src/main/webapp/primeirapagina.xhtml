@@ -10,40 +10,22 @@
 <h:body>
 	<h:form id="formPessoa">
 	<h1>Olá JSF</h1>
-	
-		<!-- <table>
-			<tr>
-				<td>tabela celula 1</td>
-				<td>tabela celula 2</td>
-			</tr>
-		</table> -->
-		<!-- teste primeira pagina -->
-		
 		<!-- 
-		<h:inputText id="nome" value="#{pessoaBean.nome}" />
-		<br/>
-		<h:inputText id="sobrenome" value="#{pessoaBean.sobrenome}" />
-		 -->
-		
 		<table>
 			<tr>
 				<td>Nome</td>
-				<td>
-					<h:inputText id="nome" value="#{pessoaBean.nome}" />
-				</td>
-			</tr>
-			<tr>
-				<td>Sobrenome</td>
-				<td>
-					<h:inputText id="sobrenome" value="#{pessoaBean.sobrenome}" />
-				</td>
+				<td><h:inputText id="nome" value="#{pessoaBean.nome}" /></td>
 			</tr>
 		</table>
+		 -->
+		Nome: <h:inputText id="nome" value="#{pessoaBean.nome}" />
+		<h:commandButton value="Adicionar Nome" action="#{pessoaBean.addNome}" />
 		
-		<br/>
-		<h:outputText value="#{pessoaBean.nomeCompleto}" />
-		<br/>
-		<h:commandButton value="Exibir Nome" action="#{pessoaBean.mostrarNome}" />
+		<h:dataTable  value="#{pessoaBean.nomes}" var="nome">
+			<h:column>
+				<h:outputText value="#{nome}" />
+			</h:column>
+		</h:dataTable>
 	
 	</h:form>
 </h:body>
