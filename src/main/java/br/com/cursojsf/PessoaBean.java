@@ -3,11 +3,11 @@ package br.com.cursojsf;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 
 @ManagedBean(name = "pessoaBean")
-@SessionScoped
+@ApplicationScoped
 public class PessoaBean {
 	
 	private String nome;
