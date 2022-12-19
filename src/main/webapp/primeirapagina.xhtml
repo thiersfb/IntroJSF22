@@ -19,6 +19,13 @@
 		</table>
 		 -->
 		Nome: <h:inputText id="nome" value="#{pessoaBean.nome}" />
+		<br/>
+		Senha: <h:inputSecret id="senha" value="#{pessoaBean.senha}" />
+		<br/>
+		Texto: <h:inputTextarea id="texto" value="#{pessoaBean.texto}" />
+		<br/>
+		
+		
 		<h:commandButton binding="#{pessoaBean.commandButton}" value="Adicionar Nome" action="#{pessoaBean.addNome}" />
 		
 		<h:dataTable  value="#{pessoaBean.nomes}" var="nome">
