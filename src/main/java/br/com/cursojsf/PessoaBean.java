@@ -22,7 +22,7 @@ public class PessoaBean {
 		
 		if(nomes.size() > 2) {
 			commandButton.setDisabled(true);
-			return "paginanavegada";
+			return "paginanavegada?faces-redirect=true"; //força o redirecionamento da URL
 		}
 		
 		return ""; //null ou em branco, fica na mesma página -> outcome
