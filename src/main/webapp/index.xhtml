@@ -25,7 +25,7 @@
 		
 		<h5>Página Index JSF</h5>
 		
-		<h:inputText id="nome"></h:inputText>
+		<h:inputText id="nome" onclick="this.value='troquei o valor'" onchange="this.value = this.value.toUpperCase();"></h:inputText>
 		<h:commandButton value="Clicar" onclick="alterarValorDoCampo();"> </h:commandButton>
 		<br/>
 		<br/>
