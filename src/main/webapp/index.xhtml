@@ -25,6 +25,12 @@
 		
 		<h5>Página Index JSF</h5>
 		
+		<h:outputText value="Saída de texto" value="#{pessoaBean.nome}"/> <!-- Usado para exibir -->
+		<br/>
+		<h:outputLabel value="Nome: " for="campoNome"/>
+		<h:inputText id="campoNome" value="#{pessoaBean.nome}"/> <!-- Usado para gravar -->
+		
+		<!-- 
 		<h:inputText id="nome" onclick="this.value='troquei o valor'" onchange="this.value = this.value.toUpperCase();"></h:inputText>
 		<h:commandButton value="Clicar" onclick="alterarValorDoCampo();"> </h:commandButton>
 		<br/>
@@ -34,7 +40,7 @@
 		<br/>
 		<br/>
 		<h:commandButton value="Navegar Explicita" action="explicita"></h:commandButton>
-	
+	 	-->
 	</h:form>
 </h:body>
 
