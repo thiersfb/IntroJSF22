@@ -13,38 +13,34 @@
 	
 		<h1>Olá JSF</h1>
 		
-		<table>
-			<tr>
-				<td><h:outputLabel value="ID" /></td>
-				<td><h:inputText value="#{pessoaBean.pessoa.id}" readonly="true" /></td>
-			</tr>
-			<tr>
-				<td><h:outputLabel value="Nome" /></td>
-				<td><h:inputText value="#{pessoaBean.pessoa.nome}" /></td>
-			</tr>
-			<tr>
-				<td><h:outputLabel value="Sobrenome" /></td>
-				<td><h:inputText value="#{pessoaBean.pessoa.sobrenome}" /></td>
-			</tr>
-			<tr>
-				<td><h:outputLabel value="Idade" /></td>
-				<td><h:inputText value="#{pessoaBean.pessoa.idade}" /></td>
-			</tr>
-			<!-- 
-			<tr>
-				<td><h:outputLabel value="Nome" /></td>
-				<td><h:inputText value="#{pessoaBean.pessoa.nome}" /></td>
-			</tr>
-			 -->
-			<tr>
-				<!-- <td>&nbsp;</td> -->
-				<td><h:commandButton value="Novo" action="#{pessoaBean.novo}" /></td>
-				<td>
-					<h:commandButton value="Salvar" action="#{pessoaBean.salvar}" /> 
-
-				</td>
-			</tr>
-		</table>
+		
+		<h:panelGrid columns="2">
+		
+			<f:facet name="header">
+				<h:outputText value="Cadastro em JSF"></h:outputText>
+			</f:facet>
+			
+			<h:outputLabel value="ID" />
+			<h:inputText value="#{pessoaBean.pessoa.id}" readonly="true" />
+			
+			<h:outputLabel value="Nome" />
+			<h:inputText value="#{pessoaBean.pessoa.nome}" />
+			
+			<h:outputLabel value="Sobrenome" />
+			<h:inputText value="#{pessoaBean.pessoa.sobrenome}" />
+			
+			<h:outputLabel value="Idade" />
+			<h:inputText value="#{pessoaBean.pessoa.idade}" />
+			
+			<h:outputLabel />
+			<h:panelGroup>
+				<h:commandButton value="Novo" action="#{pessoaBean.novo}" />
+				<h:commandButton value="Salvar" action="#{pessoaBean.salvar}" /> 
+				 
+			</h:panelGroup>
+				
+		</h:panelGrid>
+		
 		
 		<br/>
 		
