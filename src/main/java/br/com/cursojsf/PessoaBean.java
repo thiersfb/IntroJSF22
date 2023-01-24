@@ -4,13 +4,69 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.bean.ViewScoped;
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.component.html.HtmlCommandButton;
+
+import br.com.dao.DaoGeneric;
+import br.com.entidades.Pessoa;
 
 @ManagedBean(name = "pessoaBean")
 @ViewScoped
 public class PessoaBean {
 	
+	private Pessoa pessoa = new Pessoa();
+	private DaoGeneric<Pessoa> daoGeneric = new DaoGeneric<Pessoa>();
+	private List<Pessoa> pessoas  = new ArrayList<Pessoa>();
+	
+	public String salvar() {
+		//daoGeneric.salvar(pessoa);
+		//pessoa = new Pessoa();
+		pessoa = daoGeneric.merge(pessoa);
+		carregarListaPessoas();
+		return ""; //null ou em branco, fica na mesma página -> outcome
+	}
+	
+	public String novo() {
+		pessoa = new Pessoa();
+		return "";
+	}
+	
+	public String remove() {
+		daoGeneric.deleteById(pessoa);
+		novo();
+		carregarListaPessoas();
+		return "";
+	}
+	
+	@PostConstruct	//método será carregado após instanciado
+	public void carregarListaPessoas() {
+		pessoas = daoGeneric.getListEntity(Pessoa.class);
+	}
+
+	public Pessoa getPessoa() {
+		return pessoa;
+	}
+
+	public void setPessoa(Pessoa pessoa) {
+		this.pessoa = pessoa;
+	}
+
+	public DaoGeneric<Pessoa> getDaoGeneric() {
+		return daoGeneric;
+	}
+
+	public void setDaoGeneric(DaoGeneric<Pessoa> daoGeneric) {
+		this.daoGeneric = daoGeneric;
+	}
+	
+	public List<Pessoa> getPessoas() {
+		return pessoas;
+	}
+	
+}
+	
+	/*
 	private String nome;
 	private String senha;
 	private String texto;
@@ -70,6 +126,4 @@ public class PessoaBean {
 		this.texto = texto;
 	}	
 	
-	
-	
-}
+	*/
