@@ -44,19 +44,38 @@
 		
 		<br/>
 		
-		<h:dataTable value="#{pessoaBean.pessoas}" var="pessoa">
-			<h:column><h:outputText value="#{pessoa.id}" /></h:column>
-			<h:column><h:outputText value="#{pessoa.nome}" /></h:column>
-			<h:column><h:outputText value="#{pessoa.sobrenome}" /></h:column>
-			<h:column><h:outputText value="#{pessoa.idade}" /></h:column>
+		
+		
+		<h:dataTable value="#{pessoaBean.pessoas}" var="pessoa" border="2" cellpadding="6">
+		
+			<f:facet name="header">Lista de pessoas cadastradas</f:facet>
 			
 			<h:column>
+				<f:facet name="header">ID</f:facet>
+				<h:outputText value="#{pessoa.id}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">Nome</f:facet>
+				<h:outputText value="#{pessoa.nome}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">Sobrenome</f:facet>
+				<h:outputText value="#{pessoa.sobrenome}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">Idade</f:facet>
+				<h:outputText value="#{pessoa.idade}" />
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">Editar</f:facet>
 				<h:commandLink value="Editar">
 					<f:setPropertyActionListener value="#{pessoa}" target="#{pessoaBean.pessoa}" />
 				</h:commandLink>
 			</h:column>
 			
 			<h:column>
+				<f:facet name="header">Excluir</f:facet>
 				<h:commandLink value="Excluir" action="#{pessoaBean.remove}" >
 					<f:setPropertyActionListener value="#{pessoa}" target="#{pessoaBean.pessoa}" />
 				</h:commandLink>
