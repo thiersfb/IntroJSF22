@@ -55,8 +55,9 @@
 			
 			<h:outputLabel />
 			<h:panelGroup>
-				<h:commandButton value="Novo" action="#{pessoaBean.novo}" />
-				<h:commandButton value="Salvar" action="#{pessoaBean.salvar}" /> 
+				<h:commandButton value="Novo" action="#{pessoaBean.novo}" image="/resources/img/user_add.png" title="Novo Usuário" />
+				<h:commandButton value="Salvar" action="#{pessoaBean.salvar}" image="/resources/img/user_save.png" title="Salvar"  /> 
+				<h:commandButton value="Limpar" type="reset" image="/resources/img/user_clear.png" title="Limpar Formulário"  /> 
 				 
 			</h:panelGroup>
 				
@@ -91,15 +92,17 @@
 			
 			<h:column>
 				<f:facet name="header">Editar</f:facet>
-				<h:commandLink value="Editar">
+				<h:commandLink title="Editar">
 					<f:setPropertyActionListener value="#{pessoa}" target="#{pessoaBean.pessoa}" />
+					<h:graphicImage library="img" name="user_edit.png" />
 				</h:commandLink>
 			</h:column>
 			
 			<h:column>
 				<f:facet name="header">Excluir</f:facet>
-				<h:commandLink value="Excluir" action="#{pessoaBean.remove}" >
+				<h:commandLink title="Excluir" action="#{pessoaBean.remove}" >
 					<f:setPropertyActionListener value="#{pessoa}" target="#{pessoaBean.pessoa}" />
+					<h:graphicImage library="img" name="user_delete.png" />
 				</h:commandLink>
 			</h:column>
 			
