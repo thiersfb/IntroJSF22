@@ -29,6 +29,7 @@ public class Pessoa implements Serializable {
 	
 	private String sexo;
 	private String[] frameworks;
+	private boolean status;
 	
 	public Pessoa() {
 		
@@ -79,6 +80,15 @@ public class Pessoa implements Serializable {
 
 	public void setFrameworks(String[] frameworks) {
 		this.frameworks = frameworks;
+	}
+	
+
+	public boolean getStatus() {
+		return status;
+	}
+
+	public void setStatus(boolean status) {
+		this.status = status;
 	}
 
 	@Override
