@@ -38,6 +38,7 @@ public class FilterAutenticacao implements Filter {
 		if(!url.equalsIgnoreCase("index.jsf") && usuarioLogado == null) {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsf");
 			dispatcher.forward(request, response);
+			return;
 		} else {
 			//executa as ações do request e do response
 			chain.doFilter(request, response);

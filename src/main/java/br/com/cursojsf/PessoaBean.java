@@ -14,6 +14,8 @@ import javax.servlet.http.HttpSession;
 
 import br.com.dao.DaoGeneric;
 import br.com.entidades.Pessoa;
+import br.com.repository.IDaoPessoa;
+import br.com.repository.IDaoPessoaImplement;
 
 @ManagedBean(name = "pessoaBean")
 @ViewScoped
@@ -22,6 +24,8 @@ public class PessoaBean {
 	private Pessoa pessoa = new Pessoa();
 	private DaoGeneric<Pessoa> daoGeneric = new DaoGeneric<Pessoa>();
 	private List<Pessoa> pessoas  = new ArrayList<Pessoa>();
+	
+	private IDaoPessoa iDaoPessoa = new IDaoPessoaImplement();
 	
 	public String salvar() {
 		//daoGeneric.salvar(pessoa);
@@ -68,20 +72,21 @@ public class PessoaBean {
 		return pessoas;
 	}
 	
-	/*
 	public String logar() {
 		
-		carregarPessoas();
-		Pessoa pessoaUser = idaopessoa.consultarUsuario(pessoa.getLogin(), pessoa.getSenha());
+		//carregarPessoas();
+		Pessoa pessoaUser = iDaoPessoa.consultarUsuario(pessoa.getLogin(), pessoa.getSenha());
 		
 		if(pessoaUser != null) {
 			
-			//adicionar usuário na sessão
+			//adicionar usuário na sessão usuariologado
 			FacesContext context = FacesContext.getCurrentInstance();
 			ExternalContext externalContext = context.getExternalContext();
+			externalContext.getSessionMap().put("usuariologado", pessoaUser.getLogin());
 			
-			HttpServletRequest req = (HttpServletRequest) externalContext.getRequest();
-			HttpSession session = req.getSession();
+			//HttpServletRequest req = (HttpServletRequest) externalContext.getRequest();
+			//HttpSession session = req.getSession();
+			//session.setAttribute("usuariologado", pessoaUser);
 			
 			return "primeirapagina.jsf";
 		}
@@ -100,7 +105,7 @@ public class PessoaBean {
 		
 		return pessoaUser.getPerfilUser().equals(acesso);
 	}
-	*/
+	
 }
 	
 	/*
