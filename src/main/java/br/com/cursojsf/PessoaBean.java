@@ -7,6 +7,10 @@ import javax.faces.bean.ViewScoped;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.component.html.HtmlCommandButton;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import br.com.dao.DaoGeneric;
 import br.com.entidades.Pessoa;
@@ -64,6 +68,39 @@ public class PessoaBean {
 		return pessoas;
 	}
 	
+	/*
+	public String logar() {
+		
+		carregarPessoas();
+		Pessoa pessoaUser = idaopessoa.consultarUsuario(pessoa.getLogin(), pessoa.getSenha());
+		
+		if(pessoaUser != null) {
+			
+			//adicionar usuário na sessão
+			FacesContext context = FacesContext.getCurrentInstance();
+			ExternalContext externalContext = context.getExternalContext();
+			
+			HttpServletRequest req = (HttpServletRequest) externalContext.getRequest();
+			HttpSession session = req.getSession();
+			
+			return "primeirapagina.jsf";
+		}
+		return "index.jsf";
+	}
+	
+	public boolean permiteAcesso(String acesso) {
+		
+		FacesContext context = FacesContext.getCurrentInstance();
+		ExternalContext externalContext = context.getExternalContext();
+		
+		HttpServletRequest req = (HttpServletRequest) externalContext.getRequest();
+		HttpSession session = req.getSession();
+		
+		Pessoa pessoaUser = (Pessoa) session.getAttribute("usuariologado");
+		
+		return pessoaUser.getPerfilUser().equals(acesso);
+	}
+	*/
 }
 	
 	/*
