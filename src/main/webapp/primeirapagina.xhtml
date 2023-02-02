@@ -9,7 +9,15 @@
 </h:head>
 
 <h:body>
-	<h:form id="formPessoa">
+	
+	<h:form>
+		<h:commandLink value="Administração" action="primeirapagina" />
+		<h:commandLink style="margin-left: 1cm;" value="Lançamentos" action="lancamento" />
+		<h:commandLink style="margin-left: 1cm;" value="Trocar Usuário" action="index" />
+	</h:form>
+	
+	
+	<h:form id="formPessoa" rendered="#{pessoaBean.permiteAcesso('Administrador')}">
 	
 		<!-- <h:graphicImage value="/resources/img/lamborghini_PNG10709.png" width="40" height="40" /> -->
 		<!-- <h:graphicImage library="img" name="lamborghini_PNG10709.png" width="40" height="40" /> -->
