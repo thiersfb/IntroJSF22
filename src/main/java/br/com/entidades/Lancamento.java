@@ -12,8 +12,8 @@ import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-
 @Entity(name = "TBLancamento")
+//@Entity()
 @Table(name = "TBLancamento")
 public class Lancamento implements Serializable {
 

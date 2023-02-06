@@ -16,7 +16,7 @@
 		<h:commandLink style="margin-left: 1cm;" value="Trocar Usuário" action="index" />
 	</h:form>
 	
-	<h:form id="lancamento" style="margin-top:22%; margin-left:40%;">
+	<h:form id="lancamento" >
 		
 		<h:panelGrid columns="2">
 			<f:facet name="header">
@@ -73,6 +73,13 @@
 			<h:column>
 				<f:facet name="header">Destino</f:facet>
 				<h:outputText value="#{lancamento.empresaDestino}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">Usuário</f:facet>
+				<h:outputText value="#{lancamento.usuario.nome}" />
+				<h:outputText value=" " />
+				
+				<h:outputText value="#{lancamento.usuario.sobrenome}" />
 			</h:column>
 
 			

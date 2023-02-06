@@ -20,7 +20,8 @@ public class IDaoLancamentoImplement implements IDaoLancamento {
 		
 		transaction.begin();
 		
-		lista = entityManager.createQuery(" from " + Lancamento.class.getAnnotation(Table.class).name().toLowerCase() + " where usuario.id = " + codUser).getResultList();
+		//lista = entityManager.createQuery(" from TBLancamento where usuario.id = " + codUser).getResultList();
+		lista = entityManager.createQuery(" from " + Lancamento.class.getAnnotation(Table.class).name() + " where usuario.id = " + codUser).getResultList();
 		
 		transaction.commit();
 		entityManager.close();

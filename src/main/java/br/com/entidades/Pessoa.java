@@ -12,6 +12,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity(name = "TBUsuario")
+//@Entity()
 @Table(name = "TBUsuario")
 public class Pessoa implements Serializable {
 

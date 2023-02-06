@@ -19,7 +19,7 @@ public class IDaoPessoaImplement implements IDaoPessoa {
 		entityTransaction.begin();
 		
 		//pessoa = (Pessoa) entityManager.createQuery(" select p from TBUsuario p where p.login = '" + login + "' and p.senha = '" + senha + "'").getSingleResult();
-		pessoa = (Pessoa) entityManager.createQuery(" select p from " + Lancamento.class.getAnnotation(Table.class).name().toLowerCase() + " p where p.login = '" + login + "' and p.senha = '" + senha + "'").getSingleResult();
+		pessoa = (Pessoa) entityManager.createQuery(" select p from " + Pessoa.class.getAnnotation(Table.class).name() + " p where p.login = '" + login + "' and p.senha = '" + senha + "'").getSingleResult();
 		
 		entityTransaction.commit();
 		entityManager.close();
