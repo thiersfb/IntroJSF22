@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-	  xmlns:h="http://java.sun.com/jsf/html">
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:f="http://java.sun.com/jsf/core">
 
 <h:head>
 	<title>Lançamentos</title>	
@@ -9,7 +10,44 @@
 
 <h:body>
 
+	<h:form>
+		<h:commandLink value="Administração" action="primeirapagina" />
+		<h:commandLink style="margin-left: 1cm;" value="Lançamentos" action="lancamento" />
+		<h:commandLink style="margin-left: 1cm;" value="Trocar Usuário" action="index" />
+	</h:form>
+	
 	<h:form id="lancamento" style="margin-top:22%; margin-left:40%;">
+		
+		<h:panelGrid columns="2">
+			<f:facet name="header">
+				<h:outputText value="Cadastro de Lançamentos" />
+			</f:facet>
+			
+			<h:outputLabel value="ID" />
+			<h:inputText value="#{lancamentoBean.lancamento.id}" readonly="true" />
+			
+			<h:outputLabel value="Número Nota Fiscal" />
+			<h:inputText value="#{lancamentoBean.lancamento.numeroNF}" />
+			
+			<h:outputLabel value="Série Nota Fiscal" />
+			<h:inputText value="#{lancamentoBean.lancamento.serieNF}" />
+
+			<h:outputLabel value="Empresa Origem" />
+			<h:inputText value="#{lancamentoBean.lancamento.empresaOrigem}" />
+			
+			<h:outputLabel value="Empresa Destino" />
+			<h:inputText value="#{lancamentoBean.lancamento.empresaDestino}" />
+			
+			
+			<h:panelGroup>
+				<h:commandButton value="Novo" action="#{lancamentoBean.novo}" image="/resources/img/plus_add.png" title="Novo Lançamento" />
+				<h:commandButton style="margin-left: 1cm;" value="Salvar" action="#{lancamentoBean.salvar}" image="/resources/img/user_save.png" title="Salvar"  /> 
+				<h:commandButton style="margin-left: 1cm;" value="Limpar" type="reset" image="/resources/img/user_clear.png" title="Limpar Formulário"  /> 
+			</h:panelGroup>
+				
+		</h:panelGrid>
+		
+		<br/>
 		
 	</h:form>
 		

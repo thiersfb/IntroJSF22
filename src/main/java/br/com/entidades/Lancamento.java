@@ -29,7 +29,6 @@ public class Lancamento implements Serializable {
 	private String empresaDestino;
 	
 	@ManyToOne(optional = false)
-	//@javax.persistence.ForeignKey(name="usuario_fk")
 	@JoinColumns(foreignKey = @ForeignKey(name="usuario_fk"), value = { @JoinColumn(referencedColumnName = "id") })
 	private Pessoa usuario;
 
