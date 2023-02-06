@@ -49,6 +49,53 @@
 		
 		<br/>
 		
+		
+		<h:dataTable value="#{lancamentoBean.lancamentos}" var="lancamento" border="2" cellpadding="6">
+		
+			<f:facet name="header">Lista de lançamentos cadastrados</f:facet>
+			
+			<h:column>
+				<f:facet name="header">ID</f:facet>
+				<h:outputText value="#{lancamento.id}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">NumNF</f:facet>
+				<h:outputText value="#{lancamento.numeroNF}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">SerieNF</f:facet>
+				<h:outputText value="#{lancamento.serieNF}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">Origem</f:facet>
+				<h:outputText value="#{lancamento.empresaOrigem}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">Destino</f:facet>
+				<h:outputText value="#{lancamento.empresaDestino}" />
+			</h:column>
+
+			
+			<h:column>
+				<f:facet name="header">Editar</f:facet>
+				<h:commandLink title="Editar">
+					<f:setPropertyActionListener value="#{lancamento}" target="#{lancamentoBean.lancamento}" />
+					<h:graphicImage library="img" name="user_edit.png" />
+				</h:commandLink>
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">Excluir</f:facet>
+				<h:commandLink title="Excluir" action="#{lancamentoBean.remove}" >
+					<f:setPropertyActionListener value="#{lancamento}" target="#{lancamentoBean.lancamento}" />
+					<h:graphicImage library="img" name="user_delete.png" />
+				</h:commandLink>
+			</h:column>
+			
+		</h:dataTable>
+		
+		
+		
 	</h:form>
 		
 </h:body>
