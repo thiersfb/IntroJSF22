@@ -55,6 +55,7 @@ public class LancamentoBean {
 		Pessoa pessoaUser = (Pessoa) externalContext.getSessionMap().get("usuariologado");
 		
 		lancamentos = daoLancamento.consultarLancamentos(pessoaUser.getId());
+		//lancamentos = daoLancamento.consultarLancamentos();
 	}
 
 	public Lancamento getLancamento() {

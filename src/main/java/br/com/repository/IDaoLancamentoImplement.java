@@ -21,12 +21,32 @@ public class IDaoLancamentoImplement implements IDaoLancamento {
 		transaction.begin();
 		
 		//lista = entityManager.createQuery(" from TBLancamento where usuario.id = " + codUser).getResultList();
-		lista = entityManager.createQuery(" from " + Lancamento.class.getAnnotation(Table.class).name() + " where usuario.id = " + codUser).getResultList();
+		//lista = entityManager.createQuery(" from " + Lancamento.class.getAnnotation(Table.class).name() + " where usuario.id = " + codUser).getResultList();
+		lista = entityManager.createQuery(" from " + Lancamento.class.getAnnotation(Table.class).name() ).getResultList();
 		
 		transaction.commit();
 		entityManager.close();
 		
 		return lista;
 	}
+	
+	/*
+	@Override
+	public List<Lancamento> consultarLancamentos(Long codUser) {
+		List<Lancamento> lista = null;
+		
+		EntityManager entityManager = JPAUtil.getEntityManager();
+		EntityTransaction transaction = entityManager.getTransaction();
+		
+		transaction.begin();
+		
+		lista = entityManager.createQuery(" from " + Lancamento.class.getAnnotation(Table.class).name()).getResultList();
+		
+		transaction.commit();
+		entityManager.close();
+		
+		return lista;
+	}
+	*/
 
 }

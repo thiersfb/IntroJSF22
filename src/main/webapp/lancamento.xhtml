@@ -11,7 +11,7 @@
 <h:body>
 
 	<h:form>
-		<h:commandLink value="Administração" action="primeirapagina" />
+		<h:commandLink value="Administração" action="primeirapagina" rendered="#{pessoaBean.permiteAcesso('Administrador')}" />
 		<h:commandLink style="margin-left: 1cm;" value="Lançamentos" action="lancamento" />
 		<h:commandLink style="margin-left: 1cm;" value="Trocar Usuário" action="index" />
 	</h:form>
@@ -91,7 +91,7 @@
 				</h:commandLink>
 			</h:column>
 			
-			<h:column>
+			<h:column rendered="#{pessoaBean.permiteAcesso('Administrador')}">
 				<f:facet name="header">Excluir</f:facet>
 				<h:commandLink title="Excluir" action="#{lancamentoBean.remove}" >
 					<f:setPropertyActionListener value="#{lancamento}" target="#{lancamentoBean.lancamento}" />
