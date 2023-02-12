@@ -31,6 +31,7 @@ public class Pessoa implements Serializable {
 	private String sexo;
 	private String nivelExperiencia;
 	private String[] frameworks;
+	private Integer[] linguagens;
 	private boolean status;
 
 	private String login;
@@ -99,6 +100,13 @@ public class Pessoa implements Serializable {
 		this.nivelExperiencia = nivelExperiencia;
 	}
 	
+	public Integer[] getLinguagens() {
+		return linguagens;
+	}
+	
+	public void setLinguagens(Integer[] linguagens) {
+		this.linguagens = linguagens;
+	}
 
 	public String[] getFrameworks() {
 		return frameworks;
