@@ -19,15 +19,11 @@
 	
 	<h:form id="formPessoa" rendered="#{pessoaBean.permiteAcesso('Administrador')}">
 	
-		<!-- <h:graphicImage value="/resources/img/lamborghini_PNG10709.png" width="40" height="40" /> -->
-		<!-- <h:graphicImage library="img" name="lamborghini_PNG10709.png" width="40" height="40" /> -->
-		
-		<!-- <h1>Olá JSF</h1> -->
 		
 		<h:panelGrid columns="2">
 		
 			<f:facet name="header">
-				<h:outputText value="Cadastro De  Usuário"></h:outputText>
+				<h:outputText value="Cadastro De Usuário"></h:outputText>
 			</f:facet>
 			
 			<h:outputLabel value="ID" />
@@ -76,6 +72,16 @@
 				<f:selectItem itemValue="Recepcionista" itemLabel="Recepcionista" />
 			</h:selectOneMenu>
 			
+			
+			<h:outputLabel value="Nível de Experiência" />
+			<h:selectOneRadio value="#{pessoaBean.pessoa.nivelExperiencia}" >
+				<f:selectItem itemValue="J" itemLabel="Junior" />
+				<f:selectItem itemValue="P" itemLabel="Pleno" />
+				<f:selectItem itemValue="S" itemLabel="Sênior" />
+				<f:selectItem itemValue="E" itemLabel="Especialista" />
+			</h:selectOneRadio>
+			
+			 
 			<h:outputLabel />
 			<h:panelGroup>
 				<h:commandButton value="Novo" action="#{pessoaBean.novo}" image="/resources/img/user_add.png" title="Novo Usuário" />

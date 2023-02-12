@@ -29,6 +29,7 @@ public class Pessoa implements Serializable {
 	private Date dataNascimento;
 
 	private String sexo;
+	private String nivelExperiencia;
 	private String[] frameworks;
 	private boolean status;
 
@@ -88,6 +89,16 @@ public class Pessoa implements Serializable {
 	public void setSexo(String sexo) {
 		this.sexo = sexo;
 	}
+	
+	
+	public String getNivelExperiencia() {
+		return nivelExperiencia;
+	}
+
+	public void setNivelExperiencia(String nivelExperiencia) {
+		this.nivelExperiencia = nivelExperiencia;
+	}
+	
 
 	public String[] getFrameworks() {
 		return frameworks;
