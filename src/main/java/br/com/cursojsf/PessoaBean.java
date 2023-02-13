@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.faces.bean.ViewScoped;
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.component.html.HtmlCommandButton;
 import javax.faces.context.ExternalContext;
@@ -32,9 +33,18 @@ public class PessoaBean {
 		//pessoa = new Pessoa();
 		pessoa = daoGeneric.merge(pessoa);
 		carregarListaPessoas();
+		mostrarMsg("Cadastrado com sucesso");
 		return ""; //null ou em branco, fica na mesma página -> outcome
 	}
 	
+	private void mostrarMsg(String msg) {
+		
+		FacesContext context = FacesContext.getCurrentInstance();
+		FacesMessage message = new FacesMessage(msg);
+		context.addMessage(null, message);
+		
+	}
+
 	public String novo() {
 		pessoa = new Pessoa();
 		return "";
@@ -44,6 +54,7 @@ public class PessoaBean {
 		daoGeneric.deleteById(pessoa);
 		novo();
 		carregarListaPessoas();
+		mostrarMsg("Removido com sucesso");
 		return "";
 	}
 	
