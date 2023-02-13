@@ -45,8 +45,8 @@
 			
 			
 			<h:outputLabel value="Data de Nascimento" />
-			<h:inputText value="#{pessoaBean.pessoa.dataNascimento}" >
-				<f:convertDateTime pattern="dd/MM/yyyy" dateStyle="full" locale="pt_BR"/>
+			<h:inputText value="#{pessoaBean.pessoa.dataNascimento}" converterMessage="Data informada é inválida !" >
+				<f:convertDateTime pattern="dd/MM/yyyy" locale="pt_BR" timeZone="GMT-03:00"/>
 			</h:inputText>
 			
 			<h:outputLabel value="Ativo" />
