@@ -32,8 +32,25 @@
 			<h:outputLabel value="Sobrenome" />
 			<h:inputText value="#{pessoaBean.pessoa.sobrenome}" />
 			
+			
+			<h:outputLabel value="Login" />
+			<h:inputText value="#{pessoaBean.pessoa.login}" />
+			
+			<h:outputLabel value="Senha" />
+			<h:inputSecret value="#{pessoaBean.pessoa.senha}" />
+			
+			
 			<h:outputLabel value="Idade" />
 			<h:inputText value="#{pessoaBean.pessoa.idade}" />
+			
+			
+			<h:outputLabel value="Data de Nascimento" />
+			<h:inputText value="#{pessoaBean.pessoa.dataNascimento}" >
+				<f:convertDateTime pattern="dd/MM/yyyy" dateStyle="full" locale="pt_BR"/>
+			</h:inputText>
+			
+			<h:outputLabel value="Ativo" />
+			<h:selectBooleanCheckbox value="#{pessoaBean.pessoa.status}" />
 			
 			<h:outputLabel value="Sexo" />
 			<h:selectOneMenu id="campoSexo" value="#{pessoaBean.pessoa.sexo}" required="false">
@@ -51,14 +68,6 @@
 				<f:selectItem itemValue="PrimeFaces" />
 			</h:selectManyMenu>
 			
-			<h:outputLabel value="Ativo" />
-			<h:selectBooleanCheckbox value="#{pessoaBean.pessoa.status}" />
-			
-			<h:outputLabel value="Login" />
-			<h:inputText value="#{pessoaBean.pessoa.login}" />
-			
-			<h:outputLabel value="Senha" />
-			<h:inputSecret value="#{pessoaBean.pessoa.senha}" />
 			
 			
 			<h:outputLabel value="Perfil" />
