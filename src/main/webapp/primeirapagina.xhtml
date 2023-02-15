@@ -100,18 +100,22 @@
 			 
 			<h:outputLabel />
 			<h:panelGroup>
-				<h:commandButton value="Novo" action="#{pessoaBean.novo}" image="/resources/img/user_add.png" title="Novo Usuário" />
+				<h:commandButton value="Novo" id="btnNovo" action="#{pessoaBean.novo}" image="/resources/img/user_add.png" title="Novo Usuário">
+					<f:ajax execute="" render="@form" /> <!-- @form referencia o form pai de onde está contido o botão -->
+				</h:commandButton>
 				<h:commandButton style="margin-left: 1cm;" value="Salvar" action="#{pessoaBean.salvar}" image="/resources/img/user_save.png" title="Salvar"  /> 
-				<h:commandButton style="margin-left: 1cm;" value="Limpar" type="reset" image="/resources/img/user_clear.png" title="Limpar Formulário"  /> 
+				<!-- <h:commandButton style="margin-left: 1cm;" value="Limpar" type="reset" image="/resources/img/user_clear.png" title="Limpar Formulário"  /> --> 
 				 
 			</h:panelGroup>
 				
 		</h:panelGrid>
 		
 		
-		<br/>
+	</h:form>
+	<br/>
 		
 		
+	<h:form id="formTable">
 		
 		<h:dataTable value="#{pessoaBean.pessoas}" var="pessoa" border="2" cellpadding="6">
 		
