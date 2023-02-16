@@ -42,11 +42,12 @@ public class Pessoa implements Serializable {
 
 	private String cep;
 	private String logradouro;
+	private String numero;
 	private String complemento;
 	private String bairro;
-	private String cidade; // localidade
+	private String localidade; //cidade
 	private String uf;
-	private String unidade;
+	//private String unidade;
 	private String ibge;
 	private String gia;
 
@@ -184,12 +185,20 @@ public class Pessoa implements Serializable {
 		this.bairro = bairro;
 	}
 
-	public String getCidade() {
-		return cidade;
+	public String getLocalidade() {
+		return localidade;
 	}
 
-	public void setCidade(String cidade) {
-		this.cidade = cidade;
+	public void setLocalidade(String localidade) {
+		this.localidade = localidade;
+	}
+	
+	public String getNumero() {
+		return numero;
+	}
+
+	public void setNumero(String numero) {
+		this.numero = numero;
 	}
 
 	public String getUf() {
@@ -200,6 +209,7 @@ public class Pessoa implements Serializable {
 		this.uf = uf;
 	}
 
+	/*
 	public String getUnidade() {
 		return unidade;
 	}
@@ -207,6 +217,7 @@ public class Pessoa implements Serializable {
 	public void setUnidade(String unidade) {
 		this.unidade = unidade;
 	}
+	*/
 
 	public String getIbge() {
 		return ibge;

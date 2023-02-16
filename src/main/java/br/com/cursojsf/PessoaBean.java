@@ -92,10 +92,11 @@ public class PessoaBean {
 			pessoa.setLogradouro(gsonAux.getLogradouro());
 			pessoa.setComplemento(gsonAux.getComplemento());
 			pessoa.setBairro(gsonAux.getBairro());
-			pessoa.setCidade(gsonAux.getCidade()); //localidade
+			pessoa.setLocalidade(gsonAux.getLocalidade()); //localidade
 			pessoa.setUf(gsonAux.getUf());
 			pessoa.setIbge(gsonAux.getIbge());
 			pessoa.setGia(gsonAux.getGia());
+			//pessoa.setUnidade(gsonAux.getUnidade());
 			
 			//System.out.println(jsonCep);
 			
