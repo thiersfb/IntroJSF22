@@ -36,13 +36,19 @@ public class Pessoa implements Serializable {
 
 	private String login;
 	private String senha;
-	
-	//@CPF(message="CPF Inválido")
-	//private String cpf;
-	
-	
+
+	// @CPF(message="CPF Inválido")
+	// private String cpf;
+
 	private String cep;
-	
+	private String logradouro;
+	private String complemento;
+	private String bairro;
+	private String cidade; // localidade
+	private String uf;
+	private String unidade;
+	private String ibge;
+	private String gia;
 
 	private String perfilUser;
 
@@ -97,8 +103,7 @@ public class Pessoa implements Serializable {
 	public void setSexo(String sexo) {
 		this.sexo = sexo;
 	}
-	
-	
+
 	public String getNivelExperiencia() {
 		return nivelExperiencia;
 	}
@@ -106,11 +111,11 @@ public class Pessoa implements Serializable {
 	public void setNivelExperiencia(String nivelExperiencia) {
 		this.nivelExperiencia = nivelExperiencia;
 	}
-	
+
 	public Integer[] getLinguagens() {
 		return linguagens;
 	}
-	
+
 	public void setLinguagens(Integer[] linguagens) {
 		this.linguagens = linguagens;
 	}
@@ -146,15 +151,78 @@ public class Pessoa implements Serializable {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-	
+
 	public String getCep() {
 		return cep;
 	}
-	
+
 	public void setCep(String cep) {
 		this.cep = cep;
 	}
-	
+
+	public String getLogradouro() {
+		return logradouro;
+	}
+
+	public void setLogradouro(String logradouro) {
+		this.logradouro = logradouro;
+	}
+
+	public String getComplemento() {
+		return complemento;
+	}
+
+	public void setComplemento(String complemento) {
+		this.complemento = complemento;
+	}
+
+	public String getBairro() {
+		return bairro;
+	}
+
+	public void setBairro(String bairro) {
+		this.bairro = bairro;
+	}
+
+	public String getCidade() {
+		return cidade;
+	}
+
+	public void setCidade(String cidade) {
+		this.cidade = cidade;
+	}
+
+	public String getUf() {
+		return uf;
+	}
+
+	public void setUf(String uf) {
+		this.uf = uf;
+	}
+
+	public String getUnidade() {
+		return unidade;
+	}
+
+	public void setUnidade(String unidade) {
+		this.unidade = unidade;
+	}
+
+	public String getIbge() {
+		return ibge;
+	}
+
+	public void setIbge(String ibge) {
+		this.ibge = ibge;
+	}
+
+	public String getGia() {
+		return gia;
+	}
+
+	public void setGia(String gia) {
+		this.gia = gia;
+	}
 
 	public String getPerfilUser() {
 		return perfilUser;
