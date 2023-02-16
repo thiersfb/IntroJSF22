@@ -1,5 +1,10 @@
 package br.com.cursojsf;
 
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,6 +15,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.component.html.HtmlCommandButton;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.faces.event.AjaxBehaviorEvent;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -61,6 +67,30 @@ public class PessoaBean {
 	@PostConstruct	//método será carregado após instanciado
 	public void carregarListaPessoas() {
 		pessoas = daoGeneric.getListEntity(Pessoa.class);
+	}
+	
+	public void pesquisaCep(AjaxBehaviorEvent event) {
+		
+		try {
+			URL url = new URL("https://viacep.com.br/ws/" + pessoa.getCep() + "/json/");
+			URLConnection connection = url.openConnection();
+			InputStream is = connection.getInputStream();
+			BufferedReader br = new BufferedReader(new InputStreamReader(is, "UTF-8"));
+			
+			String cep = "";
+			StringBuilder jsonCep = new StringBuilder();
+			
+			while ((cep = br.readLine()) != null) {
+				jsonCep.append(cep);
+			}
+			System.out.println(jsonCep);
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			mostrarMsg("Erro ao consultar o cep");
+		}
+		
 	}
 
 	public Pessoa getPessoa() {

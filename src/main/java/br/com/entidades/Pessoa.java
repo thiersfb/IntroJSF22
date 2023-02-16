@@ -36,6 +36,13 @@ public class Pessoa implements Serializable {
 
 	private String login;
 	private String senha;
+	
+	//@CPF(message="CPF Inválido")
+	//private String cpf;
+	
+	
+	private String cep;
+	
 
 	private String perfilUser;
 
@@ -139,6 +146,15 @@ public class Pessoa implements Serializable {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
+	
+	public String getCep() {
+		return cep;
+	}
+	
+	public void setCep(String cep) {
+		this.cep = cep;
+	}
+	
 
 	public String getPerfilUser() {
 		return perfilUser;
