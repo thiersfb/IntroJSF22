@@ -6,7 +6,8 @@
 	<h:form>
 		<h:commandLink value="Administração" action="primeirapagina" rendered="#{pessoaBean.permiteAcesso('Administrador')}" />
 		<h:commandLink style="margin-left: 1cm;" value="Lançamentos" action="lancamento" />
-		<h:commandLink style="margin-left: 1cm;" value="Trocar Usuário" action="index" />
+		<!-- <h:commandLink style="margin-left: 1cm;" value="Trocar Usuário" action="index" /> -->
+		<h:commandLink style="margin-left: 1cm;" value="Logoff" action="#{pessoaBean.logoff}" />
 	</h:form>
 	
 </html>

@@ -127,6 +127,20 @@ public class PessoaBean {
 		return pessoas;
 	}
 	
+
+	public String logoff() {
+		
+		FacesContext context = FacesContext.getCurrentInstance();
+		ExternalContext externalContext = context.getExternalContext();
+		externalContext.getSessionMap().remove("usuariologado");
+		
+		HttpServletRequest httpServletRequest = (HttpServletRequest) context.getCurrentInstance().getExternalContext().getRequest();
+		
+		httpServletRequest.getSession().invalidate();
+		
+		return "index.jsf";
+	}
+	
 	public String logar() {
 		
 		//carregarPessoas();
@@ -160,5 +174,6 @@ public class PessoaBean {
 		
 		return pessoaUser.getPerfilUser().equals(acesso);
 	}
+	
 	
 }
