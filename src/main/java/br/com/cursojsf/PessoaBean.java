@@ -38,6 +38,7 @@ public class PessoaBean {
 	private IDaoPessoa iDaoPessoa = new IDaoPessoaImplement();
 	
 	private List<SelectItem> estados;
+	private List<SelectItem> cidades;
 	
 	public String salvar() {
 		//daoGeneric.salvar(pessoa);
@@ -181,6 +182,18 @@ public class PessoaBean {
 	public List<SelectItem> getEstados() {
 		estados = iDaoPessoa.listaEstados();
 		return estados;
+	}
+	
+	//public List<SelectItem> carregaCidades(AjaxBehaviorEvent event) {
+	public void carregaCidades(AjaxBehaviorEvent event) {
+		String estado_id = (String) event.getComponent().getAttributes().get("submittedValue");
+		if (estado_id != null) {
+			System.out.println("Estado ID: " + estado_id);
+			//cidades = iDaoPessoa.listaCidades(estado_id);			
+		} else {
+			System.out.println("Estado não selecionado");			
+		}
+		//return cidades;
 	}
 	
 }

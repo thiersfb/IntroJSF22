@@ -8,6 +8,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Table;
 
+import br.com.entidades.Cidades;
 import br.com.entidades.Estados;
 import br.com.entidades.Lancamento;
 import br.com.entidades.Pessoa;
@@ -43,17 +44,33 @@ public class IDaoPessoaImplement implements IDaoPessoa {
 		EntityTransaction entityTransaction = entityManager.getTransaction();
 		entityTransaction.begin();
 		
-		//entityTransaction.commit();
-		//entityManager.close();
-		
-		
 		List<Estados> estados = entityManager.createQuery(" from " + Estados.class.getAnnotation(Table.class).name()).getResultList();
 		
 		for (Estados estado : estados) {
-			selectItems.add(new SelectItem(estado, estado.getNome())); // objeto, label
+			selectItems.add(new SelectItem(estado.getId(), estado.getNome())); //id do objeto, label
 		}
 		
 		return selectItems;
 	}
+	
+	/*
+	@Override
+	public List<SelectItem> listaCidades(String estado_id) {
+		
+		List<SelectItem> selectItems = new ArrayList<SelectItem>();
+		
+		EntityManager entityManager = JPAUtil.getEntityManager();
+		EntityTransaction entityTransaction = entityManager.getTransaction();
+		entityTransaction.begin();
+		
+		List<Estados> estados = entityManager.createQuery(" from " + Cidades.class.getAnnotation(Table.class).name() + " where estados_id = '" + estado_id + "'").getResultList();
+		
+		for (Estados estado : estados) {
+			selectItems.add(new SelectItem(estado.getId(), estado.getNome())); //id do objeto, label
+		}
+		
+		return selectItems;
+	}
+	*/
 
 }

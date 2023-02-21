@@ -10,6 +10,6 @@ public interface IDaoPessoa {
 	
 	Pessoa consultarUsuario(String login, String senha);
 	List<SelectItem> listaEstados();
-	
+	//List<SelectItem> listaCidades(String estado_id);
 	
 }
