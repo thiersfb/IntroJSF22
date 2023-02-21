@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 @Entity(name = "TBUsuario")
 //@Entity()
@@ -51,6 +52,9 @@ public class Pessoa implements Serializable {
 	//private String unidade;
 	private String ibge;
 	private String gia;
+	
+	@Transient /* Não persiste dados no banco */
+	private Estados estados;
 
 	private String perfilUser;
 
@@ -242,6 +246,14 @@ public class Pessoa implements Serializable {
 
 	public void setGia(String gia) {
 		this.gia = gia;
+	}
+
+	public Estados getEstados() {
+		return estados;
+	}
+
+	public void setEstados(Estados estados) {
+		this.estados = estados;
 	}
 
 	public String getPerfilUser() {

@@ -16,6 +16,7 @@ import javax.faces.component.html.HtmlCommandButton;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.event.AjaxBehaviorEvent;
+import javax.faces.model.SelectItem;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -35,6 +36,8 @@ public class PessoaBean {
 	private List<Pessoa> pessoas  = new ArrayList<Pessoa>();
 	
 	private IDaoPessoa iDaoPessoa = new IDaoPessoaImplement();
+	
+	private List<SelectItem> estados;
 	
 	public String salvar() {
 		//daoGeneric.salvar(pessoa);
@@ -175,5 +178,9 @@ public class PessoaBean {
 		return pessoaUser.getPerfilUser().equals(acesso);
 	}
 	
+	public List<SelectItem> getEstados() {
+		estados = iDaoPessoa.listaEstados();
+		return estados;
+	}
 	
 }
