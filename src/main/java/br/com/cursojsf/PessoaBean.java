@@ -7,6 +7,7 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.jar.Attributes.Name;
 
 import javax.faces.bean.ViewScoped;
 import javax.annotation.PostConstruct;
@@ -21,9 +22,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
+import com.mysql.cj.xdevapi.Table;
 
 import br.com.dao.DaoGeneric;
+import br.com.entidades.Cidades;
+import br.com.entidades.Estados;
 import br.com.entidades.Pessoa;
+import br.com.jpautil.JPAUtil;
 import br.com.repository.IDaoPessoa;
 import br.com.repository.IDaoPessoaImplement;
 
@@ -188,12 +193,32 @@ public class PessoaBean {
 	public void carregaCidades(AjaxBehaviorEvent event) {
 		String estado_id = (String) event.getComponent().getAttributes().get("submittedValue");
 		if (estado_id != null) {
-			System.out.println("Estado ID: " + estado_id);
+			
+			Estados estado = JPAUtil.getEntityManager().find(Estados.class, Long.parseLong(estado_id));
+			
+			if(estado != null) {
+				pessoa.setEstados(estado);
+				
+				List<Cidades> cidades = JPAUtil.getEntityManager().createQuery(" from TBCidades where estados_id = '" + estado_id + "'").getResultList();
+				//List<Cidades> cidades = JPAUtil.getEntityManager().createQuery(" from " + Cidades.class.getAnnotation(null).toString() + " where estados_id = '" + estado_id + "'").getResultList();
+								
+				List<SelectItem> selectItemsCidade = new ArrayList<SelectItem>();
+				for (Cidades cidade : cidades) {
+					selectItemsCidade.add(new SelectItem(cidade.getId(), cidade.getNome()));
+				}
+				setCidades(selectItemsCidade);
+			}
+			
 			//cidades = iDaoPessoa.listaCidades(estado_id);			
-		} else {
-			System.out.println("Estado não selecionado");			
-		}
+		} 
 		//return cidades;
 	}
 	
+	public void setCidades(List<SelectItem> cidades) {
+		this.cidades = cidades;
+	}
+	
+	public List<SelectItem> getCidades() {
+		return cidades;
+	}
 }
