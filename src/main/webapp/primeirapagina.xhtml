@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	  xmlns:h="http://java.sun.com/jsf/html"
 	  xmlns:f="http://java.sun.com/jsf/core"
-	  xmlns:ui = "http://java.sun.com/jsf/facelets">
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+	  xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 
 <h:head>
 	<title>Olá JSF</title>
@@ -27,7 +28,11 @@
 			<h:inputText value="#{pessoaBean.pessoa.id}" readonly="true" />
 			
 			<h:outputLabel value="Nome" />
-			<h:inputText value="#{pessoaBean.pessoa.nome}" required="true" requiredMessage="Informe o nome" validatorMessage="Mínimo de 3 e máximo 20 caracteres no nome">
+			<h:inputText value="#{pessoaBean.pessoa.nome}" 
+							required="true" 
+							requiredMessage="Informe o nome"
+							pt:placeholder="Primeiro nome" 
+							validatorMessage="Mínimo de 3 e máximo 20 caracteres no nome">
 				<f:validateLength minimum="3" maximum="20" />
 			</h:inputText>
 			
@@ -41,6 +46,9 @@
 			<h:outputLabel value="Senha" />
 			<h:inputSecret value="#{pessoaBean.pessoa.senha}" />
 			
+			
+			<h:outputLabel value="CPF" />
+			<h:inputText value="#{pessoaBean.pessoa.cpf}" pt:placeholder="Informe o CPF"  />
 			
 			<h:outputLabel value="Idade" />
 			<h:inputText value="#{pessoaBean.pessoa.idade}" />

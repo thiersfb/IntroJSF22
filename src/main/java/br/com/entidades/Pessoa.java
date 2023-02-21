@@ -25,6 +25,7 @@ public class Pessoa implements Serializable {
 	private String sobrenome;
 	private Integer idade;
 
+	private String cpf;
 	@Temporal(TemporalType.DATE)
 	private Date dataNascimento = new Date();
 
@@ -79,6 +80,14 @@ public class Pessoa implements Serializable {
 
 	public void setSobrenome(String sobrenome) {
 		this.sobrenome = sobrenome;
+	}
+	
+	public String getCpf() {
+		return cpf;
+	}
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
 	}
 
 	public Integer getIdade() {
