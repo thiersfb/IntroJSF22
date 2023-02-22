@@ -68,6 +68,27 @@ public class PessoaBean {
 		return "";
 	}
 	
+	public void editar() {
+		
+		//String senha = pessoa.getSenha();
+		pessoa.setSenha(pessoa.getSenha());
+		
+		if(pessoa.getCidades() != null) {
+			Estados estado = pessoa.getCidades().getEstados();
+			pessoa.setEstados(estado);
+			
+			List<Cidades> cidades = JPAUtil.getEntityManager().createQuery(" from TBCidades where estados_id = '" + estado.getId() + "'").getResultList();
+							
+			List<SelectItem> selectItemsCidade = new ArrayList<SelectItem>();
+			for (Cidades cidade : cidades) {
+				selectItemsCidade.add(new SelectItem(cidade, cidade.getNome()));
+			}
+			setCidades(selectItemsCidade);
+			
+		}
+		
+	}
+	
 	public String remove() {
 		daoGeneric.deleteById(pessoa);
 		novo();

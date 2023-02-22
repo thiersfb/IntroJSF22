@@ -207,7 +207,7 @@
 			
 			<h:column>
 				<f:facet name="header">Editar</f:facet>
-				<h:commandLink title="Editar">
+				<h:commandLink title="Editar" action="#{pessoaBean.editar}">
 					<f:setPropertyActionListener value="#{pessoa}" target="#{pessoaBean.pessoa}" />
 					<h:graphicImage library="img" name="user_edit.png" />
 				</h:commandLink>
