@@ -12,7 +12,7 @@ import javax.persistence.EntityTransaction;
 import br.com.entidades.Estados;
 import br.com.jpautil.JPAUtil;
 
-@FacesConverter(forClass = Estados.class)
+@FacesConverter(forClass = Estados.class, value = "estadoConverter")
 public class EstadoConverter implements Converter, Serializable {
 
 	@Override /* Retorna objeto inteiro */
@@ -30,7 +30,16 @@ public class EstadoConverter implements Converter, Serializable {
 	@Override /* Retorna apenas o ID em String */
 	public String getAsString(FacesContext context, UIComponent component, Object estado) {
 		
-		return ((Estados) estado).getId().toString();
+		if (estado == null) {
+			return null;
+		}
+		
+		if (estado instanceof Estados) {
+			return ((Estados) estado).getId().toString();
+		} else {
+			return estado.toString();
+		}
+		
 	}
 
 }

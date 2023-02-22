@@ -14,6 +14,7 @@ import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.component.html.HtmlCommandButton;
+import javax.faces.component.html.HtmlSelectOneMenu;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.event.AjaxBehaviorEvent;
@@ -186,27 +187,30 @@ public class PessoaBean {
 		return estados;
 	}
 	
-	//public List<SelectItem> carregaCidades(AjaxBehaviorEvent event) {
+	
 	public void carregaCidades(AjaxBehaviorEvent event) {
-		String estado_id = (String) event.getComponent().getAttributes().get("submittedValue");
-		if (estado_id != null) {
+		
+		//String estado_id = (String) event.getComponent().getAttributes().get("submittedValue");
+		Estados estado = (Estados) ((HtmlSelectOneMenu) event.getSource()).getValue();
+		
+		//if (estado_id != null) {
 			
-			Estados estado = JPAUtil.getEntityManager().find(Estados.class, Long.parseLong(estado_id));
+			//Estados estado = JPAUtil.getEntityManager().find(Estados.class, Long.parseLong(estado_id));
 			
 			if(estado != null) {
 				pessoa.setEstados(estado);
 				
-				List<Cidades> cidades = JPAUtil.getEntityManager().createQuery(" from TBCidades where estados_id = '" + estado_id + "'").getResultList();
+				List<Cidades> cidades = JPAUtil.getEntityManager().createQuery(" from TBCidades where estados_id = '" + estado.getId() + "'").getResultList();
 				//List<Cidades> cidades = JPAUtil.getEntityManager().createQuery(" from " + Cidades.class.getAnnotation(null).toString() + " where estados_id = '" + estado_id + "'").getResultList();
 								
 				List<SelectItem> selectItemsCidade = new ArrayList<SelectItem>();
 				for (Cidades cidade : cidades) {
-					selectItemsCidade.add(new SelectItem(cidade.getId(), cidade.getNome()));
+					selectItemsCidade.add(new SelectItem(cidade, cidade.getNome()));
 				}
 				setCidades(selectItemsCidade);
 			}
 						
-		} 
+		//} 
 	}
 	
 	public void setCidades(List<SelectItem> cidades) {
