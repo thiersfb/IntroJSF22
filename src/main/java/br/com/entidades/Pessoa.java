@@ -3,10 +3,14 @@ package br.com.entidades;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.Basic;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -27,6 +31,7 @@ public class Pessoa implements Serializable {
 	private String sobrenome;
 	private Integer idade;
 
+	// @CPF(message="CPF Inválido")
 	private String cpf;
 	@Temporal(TemporalType.DATE)
 	private Date dataNascimento = new Date();
@@ -39,10 +44,7 @@ public class Pessoa implements Serializable {
 
 	private String login;
 	private String senha;
-
-	// @CPF(message="CPF Inválido")
-	// private String cpf;
-
+	
 	private String cep;
 	private String logradouro;
 	private String numero;
@@ -61,6 +63,15 @@ public class Pessoa implements Serializable {
 	private Cidades cidades;
 
 	private String perfilUser;
+
+	@Column(columnDefinition = "LONGBLOB") /* Tipo LONGBLOB grava arquivos base64 no MySQL */
+	private String fotoIconBase64;
+	
+	@Lob /* Gravar arquivos no banco de dados */
+	@Basic(fetch = FetchType.LAZY)
+	private byte[] fotoIconBase64Original;
+	
+	private String extensao;
 
 	public Pessoa() {
 
@@ -274,6 +285,18 @@ public class Pessoa implements Serializable {
 
 	public void setPerfilUser(String perfilUser) {
 		this.perfilUser = perfilUser;
+	}
+
+	public String getFotoIconBase64() {
+		return fotoIconBase64;
+	}
+
+	public byte[] getFotoIconBase64Original() {
+		return fotoIconBase64Original;
+	}
+
+	public String getExtensao() {
+		return extensao;
 	}
 
 	@Override

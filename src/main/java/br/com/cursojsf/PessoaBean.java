@@ -70,9 +70,6 @@ public class PessoaBean {
 	
 	public void editar() {
 		
-		//String senha = pessoa.getSenha();
-		pessoa.setSenha(pessoa.getSenha());
-		
 		if(pessoa.getCidades() != null) {
 			Estados estado = pessoa.getCidades().getEstados();
 			pessoa.setEstados(estado);
