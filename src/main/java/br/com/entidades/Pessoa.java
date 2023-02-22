@@ -286,17 +286,31 @@ public class Pessoa implements Serializable {
 	public void setPerfilUser(String perfilUser) {
 		this.perfilUser = perfilUser;
 	}
+	
+	
 
 	public String getFotoIconBase64() {
 		return fotoIconBase64;
+	}
+
+	public void setFotoIconBase64(String fotoIconBase64) {
+		this.fotoIconBase64 = fotoIconBase64;
 	}
 
 	public byte[] getFotoIconBase64Original() {
 		return fotoIconBase64Original;
 	}
 
+	public void setFotoIconBase64Original(byte[] fotoIconBase64Original) {
+		this.fotoIconBase64Original = fotoIconBase64Original;
+	}
+
 	public String getExtensao() {
 		return extensao;
+	}
+
+	public void setExtensao(String extensao) {
+		this.extensao = extensao;
 	}
 
 	@Override
