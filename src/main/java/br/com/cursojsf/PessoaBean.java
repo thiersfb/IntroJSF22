@@ -21,6 +21,9 @@ import javax.faces.event.AjaxBehaviorEvent;
 import javax.faces.model.SelectItem;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
+
+import org.hibernate.service.spi.InjectService;
 
 import com.google.gson.Gson;
 import com.mysql.cj.xdevapi.Table;
@@ -46,9 +49,17 @@ public class PessoaBean {
 	private List<SelectItem> estados;
 	private List<SelectItem> cidades;
 	
+	private Part arquivofoto;
+	
+	//@Inject
+	private JPAUtil jpaUtil;
+	
 	public String salvar() {
 		//daoGeneric.salvar(pessoa);
 		//pessoa = new Pessoa();
+		
+		System.out.println(arquivofoto);
+		
 		pessoa = daoGeneric.merge(pessoa);
 		carregarListaPessoas();
 		mostrarMsg("Cadastrado com sucesso");
@@ -237,5 +248,13 @@ public class PessoaBean {
 	
 	public List<SelectItem> getCidades() {
 		return cidades;
+	}
+	
+	public void setArquivofoto(Part arquivofoto) {
+		this.arquivofoto = arquivofoto;
+	}
+	
+	public Part getArquivofoto() {
+		return arquivofoto;
 	}
 }
