@@ -53,24 +53,4 @@ public class IDaoPessoaImplement implements IDaoPessoa {
 		return selectItems;
 	}
 	
-	/*
-	@Override
-	public List<SelectItem> listaCidades(String estado_id) {
-		
-		List<SelectItem> selectItems = new ArrayList<SelectItem>();
-		
-		EntityManager entityManager = JPAUtil.getEntityManager();
-		EntityTransaction entityTransaction = entityManager.getTransaction();
-		entityTransaction.begin();
-		
-		List<Estados> estados = entityManager.createQuery(" from " + Cidades.class.getAnnotation(Table.class).name() + " where estados_id = '" + estado_id + "'").getResultList();
-		
-		for (Estados estado : estados) {
-			selectItems.add(new SelectItem(estado.getId(), estado.getNome())); //id do objeto, label
-		}
-		
-		return selectItems;
-	}
-	*/
-
 }

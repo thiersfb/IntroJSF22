@@ -177,9 +177,6 @@ public class PessoaBean {
 		ExternalContext externalContext = context.getExternalContext();
 		Pessoa pessoaUser = (Pessoa) externalContext.getSessionMap().get("usuariologado");
 		
-		//HttpServletRequest req = (HttpServletRequest) externalContext.getRequest();
-		//HttpSession session = req.getSession();
-		//Pessoa pessoaUser = (Pessoa) session.getAttribute("usuariologado");
 		
 		return pessoaUser.getPerfilUser().equals(acesso);
 	}
@@ -208,10 +205,8 @@ public class PessoaBean {
 				}
 				setCidades(selectItemsCidade);
 			}
-			
-			//cidades = iDaoPessoa.listaCidades(estado_id);			
+						
 		} 
-		//return cidades;
 	}
 	
 	public void setCidades(List<SelectItem> cidades) {
