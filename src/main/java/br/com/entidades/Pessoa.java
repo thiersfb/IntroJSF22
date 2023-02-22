@@ -72,6 +72,7 @@ public class Pessoa implements Serializable {
 	private byte[] fotoIconBase64Original;
 	
 	private String extensao;
+	private String filenameFoto;
 
 	public Pessoa() {
 
@@ -311,6 +312,16 @@ public class Pessoa implements Serializable {
 
 	public void setExtensao(String extensao) {
 		this.extensao = extensao;
+	}
+	
+	
+
+	public String getFilenameFoto() {
+		return filenameFoto;
+	}
+
+	public void setFilenameFoto(String filenameFoto) {
+		this.filenameFoto = filenameFoto;
 	}
 
 	@Override

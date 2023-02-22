@@ -86,6 +86,7 @@ public class PessoaBean {
 		/* Escrever novamente a imagem em tamanho menor*/
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		String extensao = arquivofoto.getContentType().split("\\/")[1]; /* retorna image/png */
+		String filename = arquivofoto.getSubmittedFileName().split("\\.")[0].toString();
 		ImageIO.write(resizedImagem, extensao, baos);
 		
 		String miniImagem = "data: "+ arquivofoto.getContentType() + ";base64," + DatatypeConverter.printBase64Binary(baos.toByteArray());
@@ -94,6 +95,7 @@ public class PessoaBean {
 		
 		pessoa.setFotoIconBase64(miniImagem);
 		pessoa.setExtensao(extensao);
+		pessoa.setFilenameFoto(filename);
 		
 		
 		pessoa = daoGeneric.merge(pessoa);
@@ -324,7 +326,7 @@ public class PessoaBean {
 		Pessoa pessoa = daoGeneric.consultar(Pessoa.class, fileDownloadId);
 		
 		HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
-		response.addHeader("Content-Disposition", "attachment; filename=download."+ pessoa.getExtensao());
+		response.addHeader("Content-Disposition", "attachment; filename=" + pessoa.getFilenameFoto() + "."+ pessoa.getExtensao());
 		response.setContentType("application/octet-stream");
 		response.setContentLength(pessoa.getFotoIconBase64Original().length);
 		response.getOutputStream().write(pessoa.getFotoIconBase64Original());
