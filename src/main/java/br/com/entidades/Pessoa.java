@@ -16,6 +16,10 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity(name = "TBUsuario")
 //@Entity()
@@ -28,6 +32,9 @@ public class Pessoa implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	private String nome;
+	
+	@NotNull(message = "Sobrenome deve ser informado")
+	@NotEmpty(message = "Sobrenome deve ser informado")
 	private String sobrenome;
 	private Integer idade;
 
@@ -60,6 +67,8 @@ public class Pessoa implements Serializable {
 	private Estados estados;
 	
 	@ManyToOne
+	//@NotNull(message = "Cidade não selecionada")
+	@Min(value = 1, message = "Cidade não selecionada")
 	private Cidades cidades;
 
 	private String perfilUser;

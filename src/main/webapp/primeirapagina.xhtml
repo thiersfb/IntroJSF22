@@ -160,7 +160,7 @@
 			
 			<h:outputLabel />
 			<h:panelGroup>
-				<h:commandButton value="Novo" id="btnNovo" action="#{pessoaBean.novo}" image="/resources/img/user_add.png" title="Novo Usuário">
+				<h:commandButton value="Novo" id="btnNovo" action="#{pessoaBean.novo}" image="/resources/img/user_add.png" title="Novo Usuário" immediate="true" >
 					<f:ajax execute="" render="@form" /> <!-- @form referencia o form pai de onde está contido o botão -->
 				</h:commandButton>
 				<h:commandButton style="margin-left: 1cm;" value="Salvar" action="#{pessoaBean.salvar}" image="/resources/img/user_save.png" title="Salvar"  /> 
@@ -217,7 +217,7 @@
 			
 			<h:column>
 				<f:facet name="header">Editar</f:facet>
-				<h:commandLink title="Editar" action="#{pessoaBean.editar}">
+				<h:commandLink title="Editar" action="#{pessoaBean.editar}" immediate="true" >
 					<f:setPropertyActionListener value="#{pessoa}" target="#{pessoaBean.pessoa}" />
 					<h:graphicImage library="img" name="user_edit.png" />
 				</h:commandLink>
@@ -225,7 +225,7 @@
 			
 			<h:column rendered="#{pessoaBean.permiteAcesso('Administrador')}">
 				<f:facet name="header">Excluir</f:facet>
-				<h:commandLink title="Excluir" action="#{pessoaBean.remove}" >
+				<h:commandLink title="Excluir" action="#{pessoaBean.remove}" immediate="true" >
 					<f:setPropertyActionListener value="#{pessoa}" target="#{pessoaBean.pessoa}" />
 					<h:graphicImage library="img" name="user_delete.png" />
 				</h:commandLink>
