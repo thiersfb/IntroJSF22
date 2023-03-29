@@ -64,44 +64,54 @@ public class PessoaBean {
 		//daoGeneric.salvar(pessoa);
 		//pessoa = new Pessoa();
 		
-		/* Processar Imagem */
-		byte[] imagemByte = getByte(arquivofoto.getInputStream());
-		pessoa.setFotoIconBase64Original(imagemByte); /* Salva Imagem em tamanho original */
+		//if (arquivofoto.toString().length() > 0 && (!arquivofoto.toString().isBlank() && !arquivofoto.toString().isEmpty())) {
 		
-		/* Transformar em um bufferImage */
-		BufferedImage bufferedImage = ImageIO.read(new ByteArrayInputStream(imagemByte));
+		if (arquivofoto != null) {
+			
+			/* Processar Imagem */
+			byte[] imagemByte = getByte(arquivofoto.getInputStream());
+			pessoa.setFotoIconBase64Original(imagemByte); /* Salva Imagem em tamanho original */
+			
+			/* Transformar em um bufferImage */
+			BufferedImage bufferedImage = ImageIO.read(new ByteArrayInputStream(imagemByte));
+			
+			/* Captura tipo da imagem*/
+			int type = bufferedImage.getType() == 0 ? BufferedImage.TYPE_INT_ARGB : bufferedImage.getType();
+			
+			int largura = 200;
+			int altura = 200;
+			
+			/* Criar a miniatura da imagem */
+			BufferedImage resizedImagem = new BufferedImage(largura, altura, type);
+			Graphics2D g = resizedImagem.createGraphics();
+			g.drawImage(bufferedImage, 0, 0, largura, altura, null);
+			g.dispose();
+			
+			/* Escrever novamente a imagem em tamanho menor*/
+			ByteArrayOutputStream baos = new ByteArrayOutputStream();
+			String extensao = arquivofoto.getContentType().split("\\/")[1]; /* retorna image/png */
+			String filename = arquivofoto.getSubmittedFileName().split("\\.")[0].toString();
+			ImageIO.write(resizedImagem, extensao, baos);
+			
+			String miniImagem = "data: "+ arquivofoto.getContentType() + ";base64," + DatatypeConverter.printBase64Binary(baos.toByteArray());
 		
-		/* Captura tipo da imagem*/
-		int type = bufferedImage.getType() == 0 ? BufferedImage.TYPE_INT_ARGB : bufferedImage.getType();
+			/* Processar Imagem */
 		
-		int largura = 200;
-		int altura = 200;
+		//if (filename.length() > 0 && (!filename.toString().isBlank() && !filename.toString().isEmpty())) {
+			pessoa.setFotoIconBase64(miniImagem);
+			pessoa.setExtensao(extensao);
+			pessoa.setFilenameFoto(filename);
 		
-		/* Criar a miniatura da imagem */
-		BufferedImage resizedImagem = new BufferedImage(largura, altura, type);
-		Graphics2D g = resizedImagem.createGraphics();
-		g.drawImage(bufferedImage, 0, 0, largura, altura, null);
-		g.dispose();
-		
-		/* Escrever novamente a imagem em tamanho menor*/
-		ByteArrayOutputStream baos = new ByteArrayOutputStream();
-		String extensao = arquivofoto.getContentType().split("\\/")[1]; /* retorna image/png */
-		String filename = arquivofoto.getSubmittedFileName().split("\\.")[0].toString();
-		ImageIO.write(resizedImagem, extensao, baos);
-		
-		String miniImagem = "data: "+ arquivofoto.getContentType() + ";base64," + DatatypeConverter.printBase64Binary(baos.toByteArray());
-		
-		/* Processar Imagem */
-		
-		pessoa.setFotoIconBase64(miniImagem);
-		pessoa.setExtensao(extensao);
-		pessoa.setFilenameFoto(filename);
-		
+		}
 		
 		pessoa = daoGeneric.merge(pessoa);
 		carregarListaPessoas();
 		mostrarMsg("Cadastrado com sucesso");
 		return ""; //null ou em branco, fica na mesma página -> outcome
+	}
+	
+	public void registraLog() {
+		System.out.println("Metodo registraLog");
 	}
 	
 	private void mostrarMsg(String msg) {

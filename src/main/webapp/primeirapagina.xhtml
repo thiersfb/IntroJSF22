@@ -53,6 +53,10 @@
 			<h:outputLabel value="CPF" />
 			<h:inputText value="#{pessoaBean.pessoa.cpf}" pt:placeholder="Informe o CPF"  />
 			
+			<h:outputLabel value="Título Eleitoral" />
+			<h:inputText value="#{pessoaBean.pessoa.tituloEleitoral}" pt:placeholder="Informe o número do Titulo" />
+			
+			
 			<h:outputLabel value="Idade" />
 			<h:inputText value="#{pessoaBean.pessoa.idade}" />
 			
@@ -163,7 +167,7 @@
 				<h:commandButton value="Novo" id="btnNovo" action="#{pessoaBean.novo}" image="/resources/img/user_add.png" title="Novo Usuário" immediate="true" >
 					<f:ajax execute="" render="@form" /> <!-- @form referencia o form pai de onde está contido o botão -->
 				</h:commandButton>
-				<h:commandButton style="margin-left: 1cm;" value="Salvar" action="#{pessoaBean.salvar}" image="/resources/img/user_save.png" title="Salvar"  /> 
+				<h:commandButton style="margin-left: 1cm;" value="Salvar" actionListener="#{pessoaBean.registraLog}" action="#{pessoaBean.salvar}" image="/resources/img/user_save.png" title="Salvar"  /> 
 				<!-- <h:commandButton style="margin-left: 1cm;" value="Limpar" type="reset" image="/resources/img/user_clear.png" title="Limpar Formulário"  /> --> 
 				 
 			</h:panelGroup>

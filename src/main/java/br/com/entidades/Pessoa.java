@@ -16,10 +16,15 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
+import javax.validation.constraints.DecimalMax;
+import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotEmpty;
+import org.hibernate.validator.constraints.br.CPF;
+import org.hibernate.validator.constraints.br.TituloEleitoral;
 
 @Entity(name = "TBUsuario")
 //@Entity()
@@ -31,15 +36,25 @@ public class Pessoa implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
+	
+	@NotEmpty(message = "Sobrenome deve ser informado")
+	@Size(min = 3, max = 20, message = "Mínimo de 3 e máximo 20 caracteres no nome")
 	private String nome;
 	
 	@NotNull(message = "Sobrenome deve ser informado")
 	@NotEmpty(message = "Sobrenome deve ser informado")
 	private String sobrenome;
+
+	@DecimalMin(value = "10", message = "Idade deve ser maior que 10")
+	@DecimalMax(value = "120", message = "Idade deve ser menor que 120")
 	private Integer idade;
 
-	// @CPF(message="CPF Inválido")
+	@CPF(message="CPF Inválido")
 	private String cpf;
+
+	@TituloEleitoral(message="Título Eleitoral Inválido")
+	private String tituloEleitoral;
+	
 	@Temporal(TemporalType.DATE)
 	private Date dataNascimento = new Date();
 
@@ -67,8 +82,6 @@ public class Pessoa implements Serializable {
 	private Estados estados;
 	
 	@ManyToOne
-	//@NotNull(message = "Cidade não selecionada")
-	@Min(value = 1, message = "Cidade não selecionada")
 	private Cidades cidades;
 
 	private String perfilUser;
@@ -117,6 +130,14 @@ public class Pessoa implements Serializable {
 
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
+	}
+
+	public String getTituloEleitoral() {
+		return tituloEleitoral;
+	}
+
+	public void setTituloEleitoral(String tituloEleitoral) {
+		this.tituloEleitoral = tituloEleitoral;
 	}
 
 	public Integer getIdade() {
