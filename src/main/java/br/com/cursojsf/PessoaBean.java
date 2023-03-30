@@ -56,6 +56,8 @@ public class PessoaBean {
 	
 	private IDaoPessoa iDaoPessoa = new IDaoPessoaImplement();
 	
+	//private IDaoPessoa iDaoPessoa;
+	
 	private List<SelectItem> estados;
 	private List<SelectItem> cidades;
 	
