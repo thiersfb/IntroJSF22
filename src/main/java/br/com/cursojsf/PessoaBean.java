@@ -24,6 +24,7 @@ import javax.faces.component.html.HtmlSelectOneMenu;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.event.AjaxBehaviorEvent;
+import javax.faces.event.ValueChangeEvent;
 import javax.faces.model.SelectItem;
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
@@ -257,6 +258,11 @@ public class PessoaBean {
 		
 		
 		return pessoaUser.getPerfilUser().equals(acesso);
+	}
+	
+	public void mudancaDeValor(ValueChangeEvent event) {
+		System.out.println("Valor Antigo: " + event.getOldValue());
+		System.out.println("Valor Antigo: " + event.getNewValue());
 	}
 	
 	public List<SelectItem> getEstados() {
