@@ -1,21 +1,29 @@
 package br.com.repository;
 
+import java.io.Serializable;
 import java.util.List;
 
+import javax.inject.Inject;
+import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Table;
 
 import br.com.entidades.Lancamento;
-import br.com.jpautil.JPAUtil;
 
-public class IDaoLancamentoImplement implements IDaoLancamento {
+@Named
+public class IDaoLancamentoImplement implements IDaoLancamento, Serializable {
 
+	private static final long serialVersionUID = 1L;
+
+	@Inject
+	private EntityManager entityManager;
+	
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Lancamento> consultarLancamentos(Long codUser) {
 		List<Lancamento> lista = null;
 		
-		EntityManager entityManager = JPAUtil.getEntityManager();
 		EntityTransaction transaction = entityManager.getTransaction();
 		
 		transaction.begin();
@@ -25,28 +33,9 @@ public class IDaoLancamentoImplement implements IDaoLancamento {
 		lista = entityManager.createQuery(" from " + Lancamento.class.getAnnotation(Table.class).name()).getResultList();
 		
 		transaction.commit();
-		entityManager.close();
 		
 		return lista;
 	}
-	
-	/*
-	@Override
-	public List<Lancamento> consultarLancamentos(Long codUser) {
-		List<Lancamento> lista = null;
-		
-		EntityManager entityManager = JPAUtil.getEntityManager();
-		EntityTransaction transaction = entityManager.getTransaction();
-		
-		transaction.begin();
-		
-		lista = entityManager.createQuery(" from " + Lancamento.class.getAnnotation(Table.class).name()).getResultList();
-		
-		transaction.commit();
-		entityManager.close();
-		
-		return lista;
-	}
-	*/
+	 
 
 }

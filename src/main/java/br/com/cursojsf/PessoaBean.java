@@ -8,35 +8,31 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.Serializable;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.jar.Attributes.Name;
 
-import javax.faces.bean.ViewScoped;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
-import javax.faces.component.html.HtmlCommandButton;
 import javax.faces.component.html.HtmlSelectOneMenu;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.event.AjaxBehaviorEvent;
 import javax.faces.event.ValueChangeEvent;
 import javax.faces.model.SelectItem;
+import javax.faces.view.ViewScoped;
 import javax.imageio.ImageIO;
+import javax.inject.Inject;
+import javax.inject.Named;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 import javax.xml.bind.DatatypeConverter;
 
-import org.hibernate.service.spi.InjectService;
-
 import com.google.gson.Gson;
-import com.mysql.cj.xdevapi.Table;
 
 import br.com.dao.DaoGeneric;
 import br.com.entidades.Cidades;
@@ -44,30 +40,30 @@ import br.com.entidades.Estados;
 import br.com.entidades.Pessoa;
 import br.com.jpautil.JPAUtil;
 import br.com.repository.IDaoPessoa;
-import br.com.repository.IDaoPessoaImplement;
 
-@ManagedBean(name = "pessoaBean")
 @ViewScoped
-public class PessoaBean {
+@Named(value = "pessoaBean")
+public class PessoaBean implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 	
 	private Pessoa pessoa = new Pessoa();
-	private DaoGeneric<Pessoa> daoGeneric = new DaoGeneric<Pessoa>();
 	private List<Pessoa> pessoas  = new ArrayList<Pessoa>();
 	
-	private IDaoPessoa iDaoPessoa = new IDaoPessoaImplement();
-	
-	//private IDaoPessoa iDaoPessoa;
+	@Inject
+	private DaoGeneric<Pessoa> daoGeneric;
+	@Inject
+	private IDaoPessoa iDaoPessoa;
 	
 	private List<SelectItem> estados;
 	private List<SelectItem> cidades;
 	
+	@Inject
+	private JPAUtil jpaUtil;
+	
 	private Part arquivofoto;
 	
 	public String salvar() throws IOException {
-		//daoGeneric.salvar(pessoa);
-		//pessoa = new Pessoa();
-		
-		//if (arquivofoto.toString().length() > 0 && (!arquivofoto.toString().isBlank() && !arquivofoto.toString().isEmpty())) {
 		
 		if (arquivofoto != null) {
 			
@@ -100,7 +96,6 @@ public class PessoaBean {
 		
 			/* Processar Imagem */
 		
-		//if (filename.length() > 0 && (!filename.toString().isBlank() && !filename.toString().isEmpty())) {
 			pessoa.setFotoIconBase64(miniImagem);
 			pessoa.setExtensao(extensao);
 			pessoa.setFilenameFoto(filename);
@@ -130,14 +125,15 @@ public class PessoaBean {
 		return "";
 	}
 	
-	public void editar() {
+	@SuppressWarnings("unchecked")
+	public String editar() {
 		
 		if(pessoa.getCidades() != null) {
 			Estados estado = pessoa.getCidades().getEstados();
 			pessoa.setEstados(estado);
 			
-			List<Cidades> cidades = JPAUtil.getEntityManager().createQuery(" from TBCidades where estados_id = '" + estado.getId() + "'").getResultList();
-							
+			List<Cidades> cidades = jpaUtil.getEntityManager().createQuery(" from TBCidades where estados_id = '" + estado.getId() + "'").getResultList();
+						
 			List<SelectItem> selectItemsCidade = new ArrayList<SelectItem>();
 			for (Cidades cidade : cidades) {
 				selectItemsCidade.add(new SelectItem(cidade, cidade.getNome()));
@@ -145,7 +141,7 @@ public class PessoaBean {
 			setCidades(selectItemsCidade);
 			
 		}
-		
+		return "";
 	}
 	
 	public String remove() {
@@ -273,29 +269,25 @@ public class PessoaBean {
 	}
 	
 	
+	@SuppressWarnings("unchecked")
 	public void carregaCidades(AjaxBehaviorEvent event) {
 		
-		//String estado_id = (String) event.getComponent().getAttributes().get("submittedValue");
 		Estados estado = (Estados) ((HtmlSelectOneMenu) event.getSource()).getValue();
 		
-		//if (estado_id != null) {
 			
-			//Estados estado = JPAUtil.getEntityManager().find(Estados.class, Long.parseLong(estado_id));
-			
-			if(estado != null) {
-				pessoa.setEstados(estado);
-				
-				List<Cidades> cidades = JPAUtil.getEntityManager().createQuery(" from TBCidades where estados_id = '" + estado.getId() + "'").getResultList();
-				//List<Cidades> cidades = JPAUtil.getEntityManager().createQuery(" from " + Cidades.class.getAnnotation(null).toString() + " where estados_id = '" + estado_id + "'").getResultList();
-								
-				List<SelectItem> selectItemsCidade = new ArrayList<SelectItem>();
-				for (Cidades cidade : cidades) {
-					selectItemsCidade.add(new SelectItem(cidade, cidade.getNome()));
-				}
-				setCidades(selectItemsCidade);
+		if(estado != null) {
+			pessoa.setEstados(estado);
+
+			List<Cidades> cidades = jpaUtil.getEntityManager().createQuery(" from TBCidades where estados_id = '" + estado.getId() + "'").getResultList();
+			//List<Cidades> cidades = JPAUtil.getEntityManager().createQuery(" from " + Cidades.class.getAnnotation(null).toString() + " where estados_id = '" + estado_id + "'").getResultList();
+							
+			List<SelectItem> selectItemsCidade = new ArrayList<SelectItem>();
+			for (Cidades cidade : cidades) {
+				selectItemsCidade.add(new SelectItem(cidade, cidade.getNome()));
 			}
-						
-		//} 
+			setCidades(selectItemsCidade);
+		}
+			 
 	}
 	
 	public void setCidades(List<SelectItem> cidades) {
