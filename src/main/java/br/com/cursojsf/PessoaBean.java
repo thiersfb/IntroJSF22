@@ -29,6 +29,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 import javax.xml.bind.DatatypeConverter;
 
@@ -239,11 +240,13 @@ public class PessoaBean implements Serializable {
 			ExternalContext externalContext = context.getExternalContext();
 			externalContext.getSessionMap().put("usuariologado", pessoaUser);
 			
-			//HttpServletRequest req = (HttpServletRequest) externalContext.getRequest();
-			//HttpSession session = req.getSession();
-			//session.setAttribute("usuariologado", pessoaUser);
+			HttpServletRequest req = (HttpServletRequest) externalContext.getRequest();
+			HttpSession session = req.getSession();
+			session.setAttribute("usuariologado", pessoaUser);
 			
 			return "primeirapagina.jsf";
+		} else {
+			FacesContext.getCurrentInstance().addMessage("msg", new FacesMessage("Usuário não encontrado"));
 		}
 		return "index.jsf";
 	}

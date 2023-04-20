@@ -10,23 +10,69 @@
 
 <h:body>
 
-	<h:form id="formLogin" style="margin-top: 20%; margin-left: 40%">
-		<h1>Realize o Login</h1>
-		
-		<h:panelGrid columns="2">
-			
-			<h:outputLabel value="Login" />
-			<b:inputText value="#{pessoaBean.pessoa.login}" />
-			
-			<h:outputLabel value="Senha" />
-			<b:inputSecret value="#{pessoaBean.pessoa.senha}" />
-			
-			<b:commandButton value="Acessar" action="#{pessoaBean.logar}" />
-			
-		</h:panelGrid>
-		
-		
-	</h:form>
+	
+	<h:form id="loginForm" style="margin-top: 15%;">
+	  <b:container layout="fluid">
+	    <b:panel title="Tela de Login" look="primary">
+	    
+	      <b:row tooltip="Digite o login">
+	        <b:column medium-screen="2">
+	          <h:outputText value="Login:" for="username" />
+	        </b:column>
+	        
+	        <b:column medium-screen="6">
+	          <b:inputText placeholder="Username" 
+          					id="username" 
+          					value="#{pessoaBean.pessoa.login}" 
+          					required="true" 
+          					requiredMessage="Informe o login" 
+	          				autocomplete="false" />
+	        </b:column>
+	        
+	        <b:column medium-screen="4" style-class="message">
+	          <b:message for="username" />
+	        </b:column>
+	        
+	      </b:row>
+	      
+	      <b:row tooltip="Digite a senha">
+	        <b:column medium-screen="2">
+	          <h:outputText value="Senha:" />
+	        </b:column>
+	      
+	        <b:column medium-screen="6">
+	          <b:inputSecret placeholder="Password" 
+          						id="password" 
+          						value="#{pessoaBean.pessoa.senha}" 
+          						required="true" 
+          						requiredMessage="Informe a senha"
+          						autocomplete="false" />
+	        </b:column>
+	        
+	        <b:column medium-screen="4" styleClass="message">
+	          <b:message for="password" />
+	        </b:column>
+	        
+	      </b:row>
+	      
+	      <b:row>
+	        <b:column span="2" offset="2">
+	          <b:commandButton value="Acessar" action="#{pessoaBean.logar}" update="@form" look="primary" style="width:100%" />
+	        </b:column>
+	      
+	        <b:column span="2">
+	          <b:commandButton value="Esqueci minha senha" onclick="ajax:loginBean.forgotPassword()" update="@form" look="danger" style="width:100%" />
+	        </b:column>
+	      </b:row>
+	      
+	    </b:panel>
+	      <b:row>
+	      	<b:messages autoUpdate="true" id="msg" />
+	      </b:row>
+	      
+	  </b:container>
+	
+</h:form>
 </h:body>
 
 </html>

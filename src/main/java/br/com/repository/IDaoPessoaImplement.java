@@ -29,7 +29,11 @@ public class IDaoPessoaImplement implements IDaoPessoa, Serializable {
 		EntityTransaction entityTransaction = entityManager.getTransaction();
 		entityTransaction.begin();
 		
-		pessoa = (Pessoa) entityManager.createQuery(" select p from " + Pessoa.class.getAnnotation(Table.class).name() + " p where p.login = '" + login + "' and p.senha = '" + senha + "'").getSingleResult();
+		try {
+			pessoa = (Pessoa) entityManager.createQuery(" select p from " + Pessoa.class.getAnnotation(Table.class).name() + " p where p.login = '" + login + "' and p.senha = '" + senha + "'").getSingleResult();			
+		} catch (Exception e) { /* Tratamento se não encontrar o usuario com login e senha */
+			System.out.println("Login e senha informados não encontrados na base de dados");
+		}
 		
 		entityTransaction.commit();
 		
