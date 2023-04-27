@@ -64,7 +64,12 @@ public class Pessoa implements Serializable {
 	private Integer[] linguagens;
 	private boolean status;
 
+	@NotNull(message = "Login deve ser informado")
+	@NotEmpty(message = "Login deve ser informado")
 	private String login;
+	
+	@NotNull(message = "Senha deve ser informada")
+	@NotEmpty(message = "Senha deve ser informada")
 	private String senha;
 	
 	private String cep;

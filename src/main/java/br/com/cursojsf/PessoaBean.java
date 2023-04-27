@@ -17,7 +17,7 @@ import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
-import javax.faces.component.html.HtmlSelectOneMenu;
+//import javax.faces.component.html.HtmlSelectOneMenu;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.event.AjaxBehaviorEvent;
@@ -41,6 +41,7 @@ import br.com.entidades.Estados;
 import br.com.entidades.Pessoa;
 import br.com.jpautil.JPAUtil;
 import br.com.repository.IDaoPessoa;
+import net.bootsfaces.component.selectOneMenu.SelectOneMenu;
 
 @ViewScoped
 @Named(value = "pessoaBean")
@@ -275,7 +276,9 @@ public class PessoaBean implements Serializable {
 	@SuppressWarnings("unchecked")
 	public void carregaCidades(AjaxBehaviorEvent event) {
 		
-		Estados estado = (Estados) ((HtmlSelectOneMenu) event.getSource()).getValue();
+		//Estados estado = (Estados) ((HtmlSelectOneMenu) event.getSource()).getValue(); /* componente HtmlSelectOneMenu do JSF */
+		
+		Estados estado = (Estados) ((SelectOneMenu) event.getSource()).getValue(); /* componente BootFaces */
 		
 			
 		if(estado != null) {
