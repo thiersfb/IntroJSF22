@@ -3,6 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	  xmlns:h="http://java.sun.com/jsf/html"
 	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:b="http://bootsfaces.net/ui"
 	  xmlns:ui = "http://java.sun.com/jsf/facelets">
 
 <h:head>
@@ -13,41 +14,60 @@
 
 	<ui:include src="/menu_header.xhtml"/>
 	
-	<h:form id="lancamento" >
+	<b:messages/>
+	
+	<b:form id="formLancamento" >
 		
 		<h:panelGrid columns="2">
 			<f:facet name="header">
 				<h:outputText value="Cadastro de Lançamentos" />
 			</f:facet>
 			
-			<h:outputLabel value="ID" />
-			<h:inputText value="#{lancamentoBean.lancamento.id}" readonly="true" />
+			<b:column>
+				<h:outputLabel value="ID" />
+				<b:inputText value="#{lancamentoBean.lancamento.id}" readonly="true" />
+			</b:column>
 			
-			<h:outputLabel value="Número Nota Fiscal" />
-			<h:inputText value="#{lancamentoBean.lancamento.numeroNF}" />
+			<b:column />
 			
-			<h:outputLabel value="Série Nota Fiscal" />
-			<h:inputText value="#{lancamentoBean.lancamento.serieNF}" />
-
-			<h:outputLabel value="Empresa Origem" />
-			<h:inputText value="#{lancamentoBean.lancamento.empresaOrigem}" />
+			<b:column>
+				<h:outputLabel value="Número Nota Fiscal" />
+				<b:inputText value="#{lancamentoBean.lancamento.numeroNF}" required="true" required-message="Informe o número da nota" />
+			</b:column>
 			
-			<h:outputLabel value="Empresa Destino" />
-			<h:inputText value="#{lancamentoBean.lancamento.empresaDestino}" />
+			<b:column>
+				<h:outputLabel value="Série Nota Fiscal" />
+				<b:inputText value="#{lancamentoBean.lancamento.serieNF}" required="true" required-message="Informe o número de série da nota" />
+			</b:column>
+			
+			<b:column>
+				<h:outputLabel value="Empresa Origem" />
+				<b:inputText value="#{lancamentoBean.lancamento.empresaOrigem}" required="true" required-message="Informe a razão social da empresa emitente da nota" />
+			</b:column>
+			
+			<b:column>
+				<h:outputLabel value="Empresa Destino" />
+				<b:inputText value="#{lancamentoBean.lancamento.empresaDestino}" required="true" required-message="Informe a razão social da empresa tomadora da nota"/>
+			</b:column>
 			
 			
-			<h:panelGroup>
-				<h:commandButton value="Novo" action="#{lancamentoBean.novo}" image="/resources/img/plus_add.png" title="Novo Lançamento" />
-				<h:commandButton style="margin-left: 1cm;" value="Salvar" action="#{lancamentoBean.salvar}" image="/resources/img/user_save.png" title="Salvar"  /> 
-				<h:commandButton style="margin-left: 1cm;" value="Limpar" type="reset" image="/resources/img/user_clear.png" title="Limpar Formulário"  /> 
-			</h:panelGroup>
+			<b:column>
+				<h:panelGroup>
+					<h:commandButton value="Novo" action="#{lancamentoBean.novo}" image="/resources/img/plus_add.png" title="Novo Lançamento" />
+					<h:commandButton style="margin-left: 1cm;" value="Salvar" action="#{lancamentoBean.salvar}" image="/resources/img/user_save.png" title="Salvar"  /> 
+					<!-- <h:commandButton style="margin-left: 1cm;" value="Limpar" type="reset" image="/resources/img/user_clear.png" title="Limpar Formulário"  /> --> 
+				</h:panelGroup>
+			</b:column>
 				
 		</h:panelGrid>
 		
-		<br/>
+	</b:form>
+	
+	<br/>
+	
+	<b:form>
 		
-		
-		<h:dataTable value="#{lancamentoBean.lancamentos}" var="lancamento" border="2" cellpadding="6">
+		<b:dataTable value="#{lancamentoBean.lancamentos}" var="lancamento" border="2" cellpadding="6">
 		
 			<f:facet name="header">Lista de lançamentos cadastrados</f:facet>
 			
@@ -96,11 +116,11 @@
 				</h:commandLink>
 			</h:column>
 			
-		</h:dataTable>
+		</b:dataTable>
 		
 		
 		
-	</h:form>
+	</b:form>
 		
 </h:body>
 
