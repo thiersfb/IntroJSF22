@@ -1,4 +1,4 @@
-package br.com.cursojsf;
+package br.com.bean;
 
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;

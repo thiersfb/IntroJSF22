@@ -1,6 +1,7 @@
 package br.com.entidades;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.ForeignKey;
@@ -11,6 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity(name = "TBLancamento")
 //@Entity()
@@ -27,11 +30,18 @@ public class Lancamento implements Serializable {
 	private String serieNF;
 	private String empresaOrigem;
 	private String empresaDestino;
+	private String naturezaOperacao;
 	
 	@ManyToOne(optional = false)
 	@JoinColumns(foreignKey = @ForeignKey(name="usuario_fk"), value = { @JoinColumn(referencedColumnName = "id") })
 	private Pessoa usuario;
 
+	@Temporal(TemporalType.DATE)
+	private Date dataInicial;
+
+	@Temporal(TemporalType.DATE)
+	private Date dataFinal;
+	
 	public Long getId() {
 		return id;
 	}
@@ -71,6 +81,16 @@ public class Lancamento implements Serializable {
 	public void setEmpresaDestino(String empresaDestino) {
 		this.empresaDestino = empresaDestino;
 	}
+	
+	
+
+	public String getNaturezaOperacao() {
+		return naturezaOperacao;
+	}
+
+	public void setNaturezaOperacao(String naturezaOperacao) {
+		this.naturezaOperacao = naturezaOperacao;
+	}
 
 	public Pessoa getUsuario() {
 		return usuario;
@@ -78,6 +98,24 @@ public class Lancamento implements Serializable {
 
 	public void setUsuario(Pessoa usuario) {
 		this.usuario = usuario;
+	}
+	
+	
+
+	public Date getDataInicial() {
+		return dataInicial;
+	}
+
+	public void setDataInicial(Date dataInicial) {
+		this.dataInicial = dataInicial;
+	}
+
+	public Date getDataFinal() {
+		return dataFinal;
+	}
+
+	public void setDataFinal(Date dataFinal) {
+		this.dataFinal = dataFinal;
 	}
 
 	@Override

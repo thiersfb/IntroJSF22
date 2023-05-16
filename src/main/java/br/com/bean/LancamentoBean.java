@@ -1,10 +1,11 @@
-package br.com.cursojsf;
+package br.com.bean;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
@@ -38,6 +39,7 @@ public class LancamentoBean  implements Serializable {
 		//daoGeneric.salvar(lancamento);
 		lancamento = daoGeneric.merge(lancamento);
 		carregarListaLancamentos();
+		feedbackMessage("Salvo com sucesso.");
 		return ""; //null ou em branco, fica na mesma página -> outcome
 	}
 	
@@ -51,7 +53,13 @@ public class LancamentoBean  implements Serializable {
 		daoGeneric.deleteById(lancamento);
 		novo();
 		carregarListaLancamentos();
+		//FacesContext.getCurrentInstance().addMessage("msg", new FacesMessage("Excluído com sucesso."));
+		feedbackMessage("Excluído com sucesso.");
 		return "";
+	}
+	
+	public void feedbackMessage(String message) {
+		FacesContext.getCurrentInstance().addMessage("msg", new FacesMessage(message));
 	}
 	
 	@PostConstruct	//método será carregado após instanciado

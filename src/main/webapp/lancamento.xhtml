@@ -14,55 +14,83 @@
 
 	<ui:include src="/menu_header.xhtml"/>
 	
-	<b:messages/>
+	<b:messages id="msg"/>
 	
 	<b:form id="formLancamento" >
 		
 		<h:panelGrid columns="2">
+			
 			<f:facet name="header">
 				<h:outputText value="Cadastro de Lançamentos" />
 			</f:facet>
 			
-			<b:column>
-				<h:outputLabel value="ID" />
-				<b:inputText value="#{lancamentoBean.lancamento.id}" readonly="true" />
-			</b:column>
 			
-			<b:column />
-			
-			<b:column>
-				<h:outputLabel value="Número Nota Fiscal" />
-				<b:inputText value="#{lancamentoBean.lancamento.numeroNF}" required="true" required-message="Informe o número da nota" />
-			</b:column>
-			
-			<b:column>
-				<h:outputLabel value="Série Nota Fiscal" />
-				<b:inputText value="#{lancamentoBean.lancamento.serieNF}" required="true" required-message="Informe o número de série da nota" />
-			</b:column>
-			
-			<b:column>
-				<h:outputLabel value="Empresa Origem" />
-				<b:inputText value="#{lancamentoBean.lancamento.empresaOrigem}" required="true" required-message="Informe a razão social da empresa emitente da nota" />
-			</b:column>
-			
-			<b:column>
-				<h:outputLabel value="Empresa Destino" />
-				<b:inputText value="#{lancamentoBean.lancamento.empresaDestino}" required="true" required-message="Informe a razão social da empresa tomadora da nota"/>
-			</b:column>
-			
-			
-			<b:column>
-				<h:panelGroup>
-					<h:commandButton value="Novo" action="#{lancamentoBean.novo}" image="/resources/img/plus_add.png" title="Novo Lançamento" />
-					<h:commandButton style="margin-left: 1cm;" value="Salvar" action="#{lancamentoBean.salvar}" image="/resources/img/user_save.png" title="Salvar"  /> 
-					<!-- <h:commandButton style="margin-left: 1cm;" value="Limpar" type="reset" image="/resources/img/user_clear.png" title="Limpar Formulário"  /> --> 
-				</h:panelGroup>
-			</b:column>
 				
+			<b:panel>	
+			
+				<b:column>
+					<h:outputLabel value="ID" />
+					<b:inputText value="#{lancamentoBean.lancamento.id}" readonly="true" />
+				</b:column>
+				
+				<b:column>
+					<h:outputLabel value="Número Nota Fiscal" />
+					<b:inputText value="#{lancamentoBean.lancamento.numeroNF}" required="true" required-message="Informe o número da nota" />
+				</b:column>
+				
+				<b:column>
+					<h:outputLabel value="Série Nota Fiscal" />
+					<b:inputText value="#{lancamentoBean.lancamento.serieNF}" required="true" required-message="Informe o número de série da nota" />
+				</b:column>
+			
+				<b:column>
+					<h:outputLabel value="Data Inicial" />
+					<b:datepicker value="#{lancamentoBean.lancamento.dataInicial}" locale="en" required="true" required-message="Data Inicial da Nota Fiscal" />
+					
+				</b:column>
+			
+			</b:panel>
+			<b:panel>
+			
+				<b:column>
+					<h:outputLabel value="Natureza de Operação" />
+					<b:inputText value="#{lancamentoBean.lancamento.naturezaOperacao}" required="true" required-message="Informe a natureza de operação da nota" />
+				</b:column>
+				
+				
+				<b:column>
+					<h:outputLabel value="Empresa Origem" />
+					<b:inputText value="#{lancamentoBean.lancamento.empresaOrigem}" required="true" required-message="Informe a razão social da empresa emitente da nota" />
+				</b:column>
+				
+				<b:column>
+					<h:outputLabel value="Empresa Destino" />
+					<b:inputText value="#{lancamentoBean.lancamento.empresaDestino}" required="true" required-message="Informe a razão social da empresa tomadora da nota"/>
+				</b:column>
+				
+				
+				<b:column>
+					<h:outputLabel value="Data Final" />
+					<b:datepicker value="#{lancamentoBean.lancamento.dataFinal}" locale="en" required="true" required-message="Data Final da Nota Fiscal" />
+					
+				</b:column>
+				
+				
+			</b:panel>
+			
 		</h:panelGrid>
-		
+			<b:column>
+					<h:panelGroup>
+						<h:commandButton value="Novo" action="#{lancamentoBean.novo}" image="/resources/img/plus_add.png" title="Novo Lançamento" />
+						<h:commandButton style="margin-left: 1cm;" value="Salvar" action="#{lancamentoBean.salvar}" image="/resources/img/user_save.png" title="Salvar"  /> 
+						<!-- <h:commandButton style="margin-left: 1cm;" value="Limpar" type="reset" image="/resources/img/user_clear.png" title="Limpar Formulário"  /> --> 
+					</h:panelGroup>
+				</b:column>
+			
 	</b:form>
 	
+	<br/>
+	<br/>
 	<br/>
 	
 	<b:form>
@@ -83,6 +111,12 @@
 				<f:facet name="header">SerieNF</f:facet>
 				<h:outputText value="#{lancamento.serieNF}" />
 			</h:column>
+			
+			<h:column>
+				<f:facet name="header">Natureza de Operação</f:facet>
+				<h:outputText value="#{lancamento.naturezaOperacao}" />
+			</h:column>
+			
 			<h:column>
 				<f:facet name="header">Origem</f:facet>
 				<h:outputText value="#{lancamento.empresaOrigem}" />
@@ -91,6 +125,17 @@
 				<f:facet name="header">Destino</f:facet>
 				<h:outputText value="#{lancamento.empresaDestino}" />
 			</h:column>
+			
+			<h:column>
+				<f:facet name="header">Data Inicial</f:facet>
+				<h:outputText value="#{lancamento.dataInicial}" />
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">Data Final</f:facet>
+				<h:outputText value="#{lancamento.dataFinal}" />
+			</h:column>
+			
 			<h:column>
 				<f:facet name="header">Usuário</f:facet>
 				<h:outputText value="#{lancamento.usuario.nome}" />
