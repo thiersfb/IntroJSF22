@@ -83,6 +83,21 @@ public class DaoGeneric<E>  implements Serializable {
 		return lista;
 	}
 	
+
+	public List<E> getListEntityLimit(Class<E> entidade, int limit) {
+		
+		EntityTransaction entityTransaction = entityManager.getTransaction();
+		entityTransaction.begin();
+		
+		List<E> lista = entityManager
+				.createQuery(" from " + entidade.getAnnotation(Table.class).name() + " order by id desc ")
+				.setMaxResults(limit)
+				.getResultList();
+		
+		entityTransaction.commit();
+		return lista;
+	}
+	
 	public E consultar(Class<E> entidade, String id) {
 		
 		//EntityManager entityManager = JPAUtil.getEntityManager();
