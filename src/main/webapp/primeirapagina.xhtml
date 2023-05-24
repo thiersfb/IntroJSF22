@@ -86,11 +86,19 @@
 					<b:inputText value="#{pessoaBean.pessoa.idade}" />
 				</b:column>
 				
+				<!-- 
 				<b:column>
 					<h:outputLabel value="Data de Nascimento" />
 					<b:inputText value="#{pessoaBean.pessoa.dataNascimento}" converterMessage="Data informada é inválida !" >
 						<f:convertDateTime pattern="dd/MM/yyyy" locale="pt_BR" timeZone="GMT-03:00"/>
 					</b:inputText>
+				</b:column>
+				 -->
+				
+				<b:column>
+					<h:outputLabel value="Data de Nascimento" />
+					<b:datepicker value="#{pessoaBean.pessoa.dataNascimento}" locale="it" required="true" required-message="Data informada é inválida !" />
+					
 				</b:column>
 				
 				<b:column>
