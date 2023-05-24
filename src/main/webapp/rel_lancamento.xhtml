@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:b="http://bootsfaces.net/ui"
+	  xmlns:ui = "http://java.sun.com/jsf/facelets">
+
+<h:head>
+	<title>Lançamentos</title>	
+</h:head>
+
+<h:body>
+
+	<ui:include src="/menu_header.xhtml"/>
+	
+	<b:messages id="msg"/>
+	
+	<b:form id="formLancamento" >
+		
+		<b:panelGrid columns="2">
+		
+		</b:panelGrid>
+			
+		<b:commandButton value="Buscar" action="#{relLancamentoBean.buscarLancamentos}"  />
+			
+	</b:form>
+	
+	<br/>
+	<br/>
+	<br/>
+	
+	<b:form>
+		
+		<b:dataTable value="#{relLancamentoBean.lancamentos}" var="lancamento" border="2" cellpadding="6" 
+			excel="true"
+			pdf="true">
+		
+			<b:dataTableColumn value="#{lancamento.id}" label="ID" />
+			<b:dataTableColumn value="#{lancamento.serieNF}" label="Série Nota Fiscal" />
+			<b:dataTableColumn value="#{lancamento.numeroNF}" label="Número Nota Fiscal" />
+			
+			<b:dataTableColumn value="#{lancamento.naturezaOperacao}" label="Natureza de Operação" />
+			
+			<b:dataTableColumn value="#{lancamento.dataInicial}" label="Data Inicial da Nota" />
+			
+			<b:dataTableColumn value="#{lancamento.dataFinal}" label="Data Final da Nota" />
+			
+			<b:dataTableColumn value="#{lancamento.usuario.nome} #{lancamento.usuario.sobrenome}" label="Usuário" />
+		</b:dataTable>
+		
+	</b:form>
+		
+</h:body>
+
+</html>
