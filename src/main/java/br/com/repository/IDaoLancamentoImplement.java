@@ -1,6 +1,7 @@
 package br.com.repository;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -53,6 +54,14 @@ public class IDaoLancamentoImplement implements IDaoLancamento, Serializable {
 		transaction.commit();
 		
 		return lista;
+	}
+	
+	public List<Lancamento> relatorioLancamento(String numNF, Date dataIni, Date dataFim) {
+		//List<Lancamento> lista = null;
+		
+		System.out.println("NumNF: "+ numNF + " | Data Inicial: " + dataIni + " | Data Final: " + dataFim);
+		
+		return null;
 	}
 
 }

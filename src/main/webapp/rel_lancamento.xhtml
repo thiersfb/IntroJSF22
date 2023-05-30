@@ -20,9 +20,23 @@
 		
 		<b:panelGrid columns="2">
 		
+			<b:column>
+				<h:outputLabel value="Data Inicial" />
+				<b:datepicker locale="en" value="#{relLancamentoBean.dataIni}" />
+			</b:column>
+			
+			<b:column>
+				<h:outputLabel value="Data Final" />
+				<b:datepicker locale="en" value="#{relLancamentoBean.dataFim}" />
+			</b:column>
+		
+			<b:column>
+				<h:outputLabel value="Número Nota" />
+				<b:inputText value="#{relLancamentoBean.numNF}" />
+			</b:column>
 		</b:panelGrid>
 			
-		<b:commandButton value="Buscar" action="#{relLancamentoBean.buscarLancamentos}"  />
+		<b:commandButton value="Buscar" action="#{relLancamentoBean.buscarLancamentos}" look="primary" style="margin-left: 15px;" />
 			
 	</b:form>
 	
