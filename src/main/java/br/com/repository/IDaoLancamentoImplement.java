@@ -1,6 +1,7 @@
 package br.com.repository;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -66,9 +67,29 @@ public class IDaoLancamentoImplement implements IDaoLancamento, Serializable {
 		
 		sql.append(" from " + Lancamento.class.getAnnotation(Table.class).name());
 		
-		if(dataIni == null && dataFim == null && (numNF != null && !numNF.isEmpty())) {
-			sql.append(" where  numeroNF = ")
-			   .append("'" + numNF.trim() + "'");
+		if (dataIni != null || dataFim != null || numNF != null || !numNF.isEmpty()) {
+			sql.append(" where ");
+		}
+		
+		if((numNF != null && !numNF.isEmpty())) {
+		   sql.append(" numeroNF = '" + numNF.trim() + "'");
+		   
+		   if (dataIni != null || dataFim != null) {
+			   sql.append(" and ");
+		   }
+		}
+		
+		if(dataIni != null) {
+			String strDataInicial = new SimpleDateFormat("yyyy-MM-dd").format(dataIni);
+			sql.append(" dataInicial >= '").append(strDataInicial).append("'");
+			if ( dataFim != null) {
+				sql.append(" and ");
+			}
+		}
+		
+		if(dataFim != null) {
+			String strDataFinal = new SimpleDateFormat("yyyy-MM-dd").format(dataFim);
+			sql.append(" dataFinal <= '").append(strDataFinal).append("'");
 		}
 		
 		EntityTransaction transaction = entityManager.getTransaction();
