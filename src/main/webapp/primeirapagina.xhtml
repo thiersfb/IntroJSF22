@@ -9,6 +9,7 @@
 
 <h:head>
 	<title>Olá JSF</title>
+	<link rel="stylesheet" type="text/css" href="resources/estilo.css"></link>
 </h:head>
 
 <h:body>
@@ -73,17 +74,17 @@
 				
 				<b:column>
 					<h:outputLabel value="CPF" />
-					<b:inputText value="#{pessoaBean.pessoa.cpf}" pt:placeholder="Informe o CPF"  />
+					<b:inputText value="#{pessoaBean.pessoa.cpf}" pt:placeholder="Informe o CPF" mask="999.999.999-99" />
 				</b:column>
 				
 				<b:column>
 					<h:outputLabel value="Título Eleitoral" />
-					<b:inputText value="#{pessoaBean.pessoa.tituloEleitoral}" pt:placeholder="Informe o número do Titulo" />
+					<b:inputText value="#{pessoaBean.pessoa.tituloEleitoral}" pt:placeholder="Informe o número do Titulo" mask="numeric" />
 				</b:column>
 				
 				<b:column>
 					<h:outputLabel value="Idade" />
-					<b:inputText value="#{pessoaBean.pessoa.idade}" />
+					<b:inputText value="#{pessoaBean.pessoa.idade}" mask="numeric" />
 				</b:column>
 				
 				<!-- 
@@ -195,7 +196,7 @@
 				
 				<b:column>
 					<h:outputLabel value="CEP" />
-					<b:inputText value="#{pessoaBean.pessoa.cep}" >
+					<b:inputText value="#{pessoaBean.pessoa.cep}" mask="99999-999" >
 						<f:ajax event="blur" execute="@this" 
 						listener="#{pessoaBean.pesquisaCep}" 
 						render="logradouro complemento bairro localidade uf ibge gia" />
