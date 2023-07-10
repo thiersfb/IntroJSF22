@@ -12,6 +12,7 @@
 		<class>br.com.entidades.Lancamento</class>
 		<class>br.com.entidades.Estados</class>
 		<class>br.com.entidades.Cidades</class>
+		<!-- <class>br.com.entidades.ArquivoUploadAula</class> -->
 		
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>

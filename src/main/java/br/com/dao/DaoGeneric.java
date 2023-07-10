@@ -70,6 +70,22 @@ public class DaoGeneric<E>  implements Serializable {
 		
 	}
 	
+	public void erasePhotoById(E entidade) {
+		
+		EntityTransaction entityTransaction = entityManager.getTransaction();
+		
+		entityTransaction.begin();
+		
+		Object id = jpaUtil.getPrimaryKey(entidade); 
+		entityManager.createNativeQuery(
+				"update " + entidade.getClass().getAnnotation(Table.class).name().toLowerCase() + " set extensao = null, fotoIconBase64 = null, fotoIconBase64Original = null, filenameFoto = null where id = " + id)
+		.executeUpdate(); /* Executa "atualização", manipula dados no banco */
+
+		
+		entityTransaction.commit();
+		
+	}
+	
 	public List<E> getListEntity(Class<E> entidade) {
 		
 		EntityTransaction entityTransaction = entityManager.getTransaction();

@@ -282,9 +282,11 @@
 			<h:column>
 				<f:facet name="header">Foto</f:facet>
 				<h:commandLink actionListener="#{pessoaBean.download}">
-					<h:graphicImage width="60" height="60" value="#{pessoa.fotoIconBase64}" />
+					<!-- <h:graphicImage width="60" height="60" value="#{pessoa.fotoIconBase64}" /> -->
+					<h:graphicImage width="60" height="60" rendered="#{not empty pessoa.fotoIconBase64}" value="#{pessoa.fotoIconBase64}"/>
 					<f:param name="fileDownloadId" value="#{pessoa.id}" />
 				</h:commandLink>
+				<h:graphicImage width="60" height="60" rendered="#{empty pessoa.fotoIconBase64}" library="img" name="user_profile.png" title="Sem Foto" />
 			</h:column>
 			<h:column>
 				<f:facet name="header">Nome</f:facet>
@@ -306,7 +308,14 @@
 				<f:facet name="header">Perfil</f:facet>
 				<h:outputText value="#{pessoa.perfilUser}" />
 			</h:column>
-
+			
+			<h:column>
+				<f:facet name="header">Remover Foto do Usuário</f:facet>
+				<h:commandLink title="Remover Foto" action="#{pessoaBean.removeFoto}" immediate="true" >
+					<f:setPropertyActionListener value="#{pessoa}" target="#{pessoaBean.pessoa}" />
+					<h:graphicImage library="img" name="delete_photo.png" height="32px" width="32px" />
+				</h:commandLink>
+			</h:column>
 			
 			<h:column>
 				<f:facet name="header">Editar</f:facet>

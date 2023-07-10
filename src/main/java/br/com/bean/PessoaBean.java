@@ -106,7 +106,7 @@ public class PessoaBean implements Serializable {
 		
 		pessoa = daoGeneric.merge(pessoa);
 		carregarListaPessoas();
-		mostrarMsg("Cadastrado com sucesso");
+		mostrarMsg("Salvo com sucesso");
 		return ""; //null ou em branco, fica na mesma página -> outcome
 	}
 	
@@ -151,6 +151,14 @@ public class PessoaBean implements Serializable {
 		novo();
 		carregarListaPessoas();
 		mostrarMsg("Removido com sucesso");
+		return "";
+	}
+	
+	public String removeFoto() {
+		daoGeneric.erasePhotoById(pessoa);
+		novo();
+		carregarListaPessoas();
+		mostrarMsg("Foto removida com sucesso");
 		return "";
 	}
 	
